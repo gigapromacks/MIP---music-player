@@ -1,0 +1,82 @@
+body{
+    background-color: black/*rgb(15, 15, 15)*/;
+    overflow: hidden; /* Отключаем прокрутку всей страницы */
+    margin: 0; /* Добавьте это */
+    height: 100vh; /* Добавьте это */
+}
+.sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 9999999;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+#poisk{
+    margin-left: 200px;
+width: 1505px;
+color:white;
+}
+input{
+    border: none;
+}
+/* Центр - прокручивается */
+.center {
+    flex: 1;
+    background: rgb(20, 20, 20);
+    height: 100vh;
+    overflow-y: auto; /* Только здесь прокрутка */
+    padding: 20px;
+}
+.sidebar {
+    width: 200px;
+    /*background: black;*/
+    height: 100%;
+   
+        flex-shrink: 0;
+ 
+color: black;
+}
+.container {
+    display: flex; /* Вот это главное! */
+    height: 100vh;
+}
+/* ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ ЗАГОЛОВКА */
+#zagalovok {
+    color: yellow;
+    text-shadow: 
+        0 0 5px yellow,
+        0 0 10px yellow,
+        0 0 15px yellow;
+
+    background-color: transparent; /* Полностью прозрачный фон */
+    border-radius: 5px;
+    display: inline-block; /* Чтобы тень применялась только к тексту */
+    margin: 10px;
+    letter-spacing: 1px; /* Разреженные буквы для лучшего эффекта */
+}
+.play{
+    margin-top: 20px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: aqua;
+margin-left: 80px;
+}
+#modal-cart{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: rgb(253, 227, 196);
+height: 900px;
+width: 500px;
+margin-left: 660px;
+margin-top: 168px;
+}
