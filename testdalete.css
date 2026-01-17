@@ -1,39 +1,47 @@
-/* =========================
-   MIP — Ultra Dark Luxury UI
+/* =========================================================
+   MIP — Ultra Dark Luxury (Full CSS)
    - very black theme
    - super rounded everywhere
-   - smooth glow animations
-   - fixes #krest in modal
-   ========================= */
+   - smooth glows + tasteful animations
+   - desktop looks bigger
+   - mobile responsive
+   - modal close (#krest) center-top and obvious
+   ========================================================= */
 
+/* --------------------------
+   Theme / Tokens
+-------------------------- */
 :root{
-  /* ULTRA dark */
+  /* ultra black palette */
   --bg0:#020206;
-  --bg1:#050514;
+  --bg1:#04040f;
   --bg2:#070822;
 
-  --glass: rgba(255,255,255,.045);
-  --glass2: rgba(255,255,255,.065);
-  --stroke: rgba(255,255,255,.10);
+  /* glass */
+  --glass: rgba(255,255,255,.040);
+  --glass2: rgba(255,255,255,.060);
+  --stroke: rgba(255,255,255,.095);
   --stroke2: rgba(255,255,255,.14);
 
-  --text:#f4f6ff;
-  --muted: rgba(244,246,255,.70);
-  --muted2: rgba(244,246,255,.52);
+  /* text */
+  --text:#f6f7ff;
+  --muted: rgba(246,247,255,.70);
+  --muted2: rgba(246,247,255,.52);
 
-  --accent:#9a6bff;     /* violet */
-  --accent2:#23d7ff;    /* cyan */
+  /* accents */
+  --accent:#9f6bff;   /* violet */
+  --accent2:#23d7ff;  /* cyan */
   --gold:#ffd400;
 
-  /* SUPER rounded */
+  /* radii (super rounded) */
   --rPill: 999px;
   --rBig: 36px;
-  --rHuge: 48px;
+  --rHuge: 52px;
 
   /* shadows */
-  --sh1: 0 30px 90px rgba(0,0,0,.72);
-  --sh2: 0 18px 46px rgba(0,0,0,.58);
-  --sh3: 0 10px 26px rgba(0,0,0,.40);
+  --sh1: 0 34px 110px rgba(0,0,0,.78);
+  --sh2: 0 20px 56px rgba(0,0,0,.62);
+  --sh3: 0 12px 28px rgba(0,0,0,.42);
 
   /* motion */
   --ease: cubic-bezier(.2,.88,.2,1);
@@ -44,125 +52,134 @@
   --fs: 16px;
 }
 
+/* --------------------------
+   Base
+-------------------------- */
 *{ box-sizing:border-box; }
-html, body{ height:100%; }
+html,body{ height:100%; }
 
 body{
   margin:0;
   height:100vh;
-  overflow:hidden;
+  overflow:hidden; /* scroll only in .center on desktop */
   color:var(--text);
   font: 650 var(--fs)/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
 
-  /* blacker background with subtle glow */
   background:
-    radial-gradient(1200px 760px at 18% -10%, rgba(154,107,255,.12), transparent 60%),
-    radial-gradient(1100px 760px at 92% 10%, rgba(35,215,255,.08), transparent 62%),
-    radial-gradient(1000px 900px at 50% 120%, rgba(255,212,0,.05), transparent 66%),
+    radial-gradient(1200px 780px at 18% -10%, rgba(159,107,255,.12), transparent 60%),
+    radial-gradient(1100px 780px at 92% 12%, rgba(35,215,255,.07), transparent 62%),
+    radial-gradient(1000px 900px at 50% 120%, rgba(255,212,0,.045), transparent 66%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-::selection{ background: rgba(154,107,255,.25); }
+::selection{ background: rgba(159,107,255,.24); }
 
 a{ color:inherit; text-decoration:none; }
 a:hover{ text-decoration: underline; }
 
-/* crisp focus */
+input, button{ font: inherit; }
+button{ border: none; }
+
 :focus-visible{
   outline:none;
-  box-shadow: 0 0 0 5px rgba(154,107,255,.14), 0 0 0 1px rgba(154,107,255,.38);
+  box-shadow: 0 0 0 6px rgba(159,107,255,.12), 0 0 0 1px rgba(159,107,255,.38);
   border-radius: 18px;
 }
 
-/* soft ambient breathing glow */
+/* tasteful ambient glow */
 @keyframes ambientGlow{
   0%   { filter: hue-rotate(0deg) brightness(1); }
   50%  { filter: hue-rotate(10deg) brightness(1.02); }
   100% { filter: hue-rotate(0deg) brightness(1); }
 }
 @media (prefers-reduced-motion: no-preference){
-  body{ animation: ambientGlow 12s linear infinite; }
+  body{ animation: ambientGlow 14s linear infinite; }
 }
 
-input, button{ font: inherit; }
-
-/* =========================
-   TOP SEARCH
-   ========================= */
+/* --------------------------
+   Top Search (#poisk)
+-------------------------- */
 #poisk{
   position: sticky;
   top: 0;
   z-index: 200;
 
-  width: min(1220px, calc(100% - 44px));
+  width: min(1260px, calc(100% - 44px));
   margin: 18px auto 0;
   display:block;
 
   padding: 16px 18px;
   border-radius: var(--rPill);
 
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.09);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.085);
   color: var(--text);
 
   box-shadow: var(--sh3);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
+
+  /* subtle “shine” */
+  background-image:
+    radial-gradient(18px 18px at 22px 50%, rgba(35,215,255,.10), transparent 70%);
 
   transition: transform var(--t2), border-color var(--t2), background var(--t2), box-shadow var(--t2);
 }
 
-#poisk::placeholder{ color: rgba(244,246,255,.40); }
+#poisk::placeholder{ color: rgba(246,247,255,.40); }
 
 #poisk:hover{
-  background: rgba(255,255,255,.065);
+  background: rgba(255,255,255,.060);
   border-color: rgba(255,255,255,.13);
 }
 
 #poisk:focus{
-  border-color: rgba(35,215,255,.26);
-  box-shadow: 0 0 0 5px rgba(35,215,255,.10), var(--sh2);
+  border-color: rgba(35,215,255,.24);
+  box-shadow: 0 0 0 6px rgba(35,215,255,.09), var(--sh2);
   transform: translateY(-1px);
 }
 
-/* =========================
-   LAYOUT
-   ========================= */
+/* --------------------------
+   App Layout
+-------------------------- */
 .container{
   display:flex;
   height: calc(100vh - 84px);
-  width: min(1500px, calc(100% - 44px));
+  width: min(1540px, calc(100% - 44px));
   margin: 14px auto 18px;
   gap: 18px;
 }
 
+/* Sidebars (both left & right are .sidebar) */
 .sidebar{
-  width: 320px;
+  width: 330px;
   flex-shrink:0;
   height: 100%;
   padding: 20px 18px;
 
   border-radius: var(--rHuge);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  border: 1px solid rgba(255,255,255,.095);
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025));
+  border: 1px solid rgba(255,255,255,.085);
   box-shadow: var(--sh2);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(22px);
 
   position: relative;
   overflow: hidden;
 }
 
+/* premium “aurora” highlight */
 .sidebar::before{
   content:"";
   position:absolute;
   inset:-2px;
   background:
-    radial-gradient(700px 320px at 18% 6%, rgba(154,107,255,.14), transparent 60%),
-    radial-gradient(700px 320px at 88% 18%, rgba(35,215,255,.10), transparent 60%);
-  opacity: .92;
+    radial-gradient(760px 360px at 18% 6%, rgba(159,107,255,.14), transparent 60%),
+    radial-gradient(760px 360px at 88% 16%, rgba(35,215,255,.10), transparent 60%),
+    radial-gradient(760px 360px at 55% 120%, rgba(255,212,0,.06), transparent 65%);
+  opacity: .95;
   pointer-events:none;
 }
 
-/* Center list */
+/* Center list area */
 .center{
   flex:1;
   height: 100%;
@@ -170,14 +187,15 @@ input, button{ font: inherit; }
   padding: 18px;
 
   border-radius: var(--rHuge);
-  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.085);
+  background: linear-gradient(180deg, rgba(255,255,255,.040), rgba(255,255,255,.018));
+  border: 1px solid rgba(255,255,255,.078);
   box-shadow: var(--sh2);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(22px);
 
   overflow-x:hidden;
 }
 
+/* smooth scrollbar */
 .center::-webkit-scrollbar{ width: 10px; }
 .center::-webkit-scrollbar-thumb{
   background: rgba(255,255,255,.14);
@@ -187,21 +205,21 @@ input, button{ font: inherit; }
 }
 .center::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.22); }
 
-/* =========================
-   BRAND / NAV
-   ========================= */
+/* --------------------------
+   Brand / Nav
+-------------------------- */
 #zagalovok{
   margin: 2px 0 18px 0;
   display:inline-block;
 
-  font-size: 22px;
-  font-weight: 980;
-  letter-spacing: .2px;
+  font-size: 24px;
+  font-weight: 990;
+  letter-spacing: .18px;
 
-  color: rgba(244,246,255,.97);
+  color: rgba(246,247,255,.98);
   text-shadow:
-    0 0 34px rgba(154,107,255,.22),
-    0 0 26px rgba(35,215,255,.12);
+    0 0 38px rgba(159,107,255,.20),
+    0 0 30px rgba(35,215,255,.12);
 }
 
 /* nav pills */
@@ -209,13 +227,13 @@ input, button{ font: inherit; }
   user-select:none;
   margin-top: 12px;
   padding: 14px 14px;
-  border-radius: 28px;
+  border-radius: 30px;
 
-  background: rgba(255,255,255,.045);
-  border: 1px solid rgba(255,255,255,.09);
-  color: rgba(244,246,255,.92);
+  background: rgba(255,255,255,.040);
+  border: 1px solid rgba(255,255,255,.085);
+  color: rgba(246,247,255,.92);
 
-  font-weight: 950;
+  font-weight: 980;
   letter-spacing: .2px;
   font-size: 16px;
 
@@ -226,24 +244,26 @@ input, button{ font: inherit; }
   transition: transform var(--t1), background var(--t1), border-color var(--t1), box-shadow var(--t1);
 }
 .folow:hover{
-  background: rgba(255,255,255,.07);
-  border-color: rgba(154,107,255,.22);
+  background: rgba(255,255,255,.065);
+  border-color: rgba(159,107,255,.18);
   transform: translateY(-1px);
-  box-shadow: 0 0 0 5px rgba(154,107,255,.09);
+  box-shadow: 0 0 0 6px rgba(159,107,255,.07);
 }
 .folow:active{ transform: translateY(0); }
 
-/* Avatar */
+/* --------------------------
+   Right sidebar avatar + button
+-------------------------- */
 .avatar{
-  width: 66px;
-  height: 66px;
+  width: 68px;
+  height: 68px;
   border-radius: var(--rPill);
   margin: 6px auto 0;
 
   background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 44%),
-    linear-gradient(135deg, rgba(154,107,255,.92), rgba(35,215,255,.68));
-  border: 1px solid rgba(255,255,255,.14);
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), transparent 44%),
+    linear-gradient(135deg, rgba(159,107,255,.92), rgba(35,215,255,.62));
+  border: 1px solid rgba(255,255,255,.12);
   box-shadow: var(--sh3);
 
   cursor:pointer;
@@ -251,22 +271,21 @@ input, button{ font: inherit; }
 }
 .avatar:hover{
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 0 0 6px rgba(35,215,255,.08), var(--sh2);
+  box-shadow: 0 0 0 7px rgba(35,215,255,.06), var(--sh2);
 }
 .avatar:active{ transform: translateY(0) scale(1.00); }
 
-/* fullscreen button */
 .sidebar button{
   width: 100%;
   margin-top: 16px;
   padding: 14px 14px;
 
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,.11);
-  background: linear-gradient(135deg, rgba(154,107,255,.78), rgba(35,215,255,.62));
-  color: rgba(5,6,10,.96);
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(135deg, rgba(159,107,255,.74), rgba(35,215,255,.56));
+  color: rgba(2,2,6,.98);
 
-  font-weight: 980;
+  font-weight: 990;
   letter-spacing: .2px;
 
   box-shadow: var(--sh3);
@@ -280,48 +299,73 @@ input, button{ font: inherit; }
 }
 .sidebar button:active{ transform: translateY(0); }
 
-/* =========================
-   TRACK CARDS
-   ========================= */
+/* --------------------------
+   Tracks (muz cards)
+-------------------------- */
 .muz{
   position: relative;
   padding: 18px 18px 16px;
   margin: 16px 0;
 
   border-radius: var(--rHuge);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.028));
-  border: 1px solid rgba(255,255,255,.085);
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.020));
+  border: 1px solid rgba(255,255,255,.078);
   box-shadow: var(--sh3);
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
 
   overflow: hidden;
   transition: transform var(--t1), border-color var(--t1), box-shadow var(--t1);
 }
 
-/* soft “glow ring” on hover */
+/* glossy aurora edge */
 .muz::before{
   content:"";
   position:absolute;
   inset:-2px;
   background:
-    radial-gradient(780px 330px at 12% 0%, rgba(154,107,255,.12), transparent 62%),
-    radial-gradient(780px 330px at 88% 0%, rgba(35,215,255,.08), transparent 62%);
-  opacity:.92;
+    radial-gradient(900px 360px at 12% 0%, rgba(159,107,255,.14), transparent 62%),
+    radial-gradient(900px 360px at 88% 0%, rgba(35,215,255,.09), transparent 62%),
+    radial-gradient(900px 360px at 50% 120%, rgba(255,212,0,.05), transparent 66%);
+  opacity:.95;
   pointer-events:none;
+}
+
+/* subtle animated shine on hover */
+@keyframes cardShine{
+  0%{ transform: translateX(-60%); opacity:.0; }
+  25%{ opacity:.55; }
+  100%{ transform: translateX(60%); opacity:0; }
+}
+.muz::after{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:-40%;
+  width: 60%;
+  height: 160%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.10), transparent);
+  transform: translateX(-60%);
+  opacity:0;
+  pointer-events:none;
+}
+@media (prefers-reduced-motion: no-preference){
+  .muz:hover::after{
+    animation: cardShine 1.1s var(--ease) 1;
+  }
 }
 
 .muz:hover{
   transform: translateY(-2px);
-  border-color: rgba(154,107,255,.20);
+  border-color: rgba(159,107,255,.16);
   box-shadow: var(--sh2);
 }
 
 .title{
-  margin: 0 78px 12px 0;
+  margin: 0 86px 12px 0;
   font-size: 19px;
-  font-weight: 980;
+  font-weight: 990;
   letter-spacing: .12px;
-  color: rgba(244,246,255,.97);
+  color: rgba(246,247,255,.98);
 }
 
 /* Fav button */
@@ -330,14 +374,14 @@ input, button{ font: inherit; }
   top: 14px;
   right: 14px;
 
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
 
   border-radius: var(--rPill);
-  border: 1px solid rgba(255,255,255,.14);
-  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.28);
 
-  color: rgba(244,246,255,.82);
+  color: rgba(246,247,255,.84);
   cursor:pointer;
 
   display:grid;
@@ -345,51 +389,49 @@ input, button{ font: inherit; }
 
   transition: transform var(--t1), background var(--t1), border-color var(--t1), box-shadow var(--t1), color var(--t1);
 }
-
 .muz-fav-btn:hover{
   transform: translateY(-1px) scale(1.03);
-  background: rgba(154,107,255,.14);
-  border-color: rgba(154,107,255,.28);
-  box-shadow: 0 0 0 6px rgba(154,107,255,.09);
-  color: rgba(244,246,255,.98);
+  background: rgba(159,107,255,.12);
+  border-color: rgba(159,107,255,.22);
+  box-shadow: 0 0 0 7px rgba(159,107,255,.07);
+  color: rgba(246,247,255,.98);
 }
-
 .muz-fav-btn.active{
-  background: rgba(255,212,0,.14);
-  border-color: rgba(255,212,0,.30);
+  background: rgba(255,212,0,.12);
+  border-color: rgba(255,212,0,.28);
   color: var(--gold);
-  box-shadow: 0 0 0 6px rgba(255,212,0,.08);
+  box-shadow: 0 0 0 7px rgba(255,212,0,.06);
 }
 
 /* Active pulse */
 @keyframes pulse{
-  0%{ box-shadow: 0 0 0 0 rgba(255,212,0,.18); }
-  100%{ box-shadow: 0 0 0 16px rgba(255,212,0,0); }
+  0%{ box-shadow: 0 0 0 0 rgba(255,212,0,.16); }
+  100%{ box-shadow: 0 0 0 18px rgba(255,212,0,0); }
 }
 @media (prefers-reduced-motion: no-preference){
-  .muz-fav-btn.active{ animation: pulse 1.2s var(--ease) infinite; }
+  .muz-fav-btn.active{ animation: pulse 1.25s var(--ease) infinite; }
 }
 
-/* Audio */
+/* Audio — bigger + very rounded */
 .muz-audio{
   width: 100%;
-  height: 56px;
+  height: 58px;
   margin-top: 10px;
-  border-radius: 24px;
+  border-radius: 28px;
   outline: none;
-  filter: drop-shadow(0 14px 26px rgba(0,0,0,.42));
+  filter: drop-shadow(0 16px 30px rgba(0,0,0,.48));
 }
 
-/* WebKit controls */
+/* WebKit player */
 .muz-audio::-webkit-media-controls-panel{
-  background: linear-gradient(135deg, rgba(10,10,16,.98), rgba(6,6,10,.98));
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,.10);
+  background: linear-gradient(135deg, rgba(8,8,14,.98), rgba(4,4,8,.98));
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,.09);
   padding: 8px;
 }
 
 .muz-audio::-webkit-media-controls-play-button{
-  background-color: rgba(154,107,255,.95);
+  background-color: rgba(159,107,255,.92);
   border-radius: 50%;
   transition: transform var(--t1), box-shadow var(--t1);
   width: 36px;
@@ -397,7 +439,7 @@ input, button{ font: inherit; }
 }
 .muz-audio::-webkit-media-controls-play-button:hover{
   transform: scale(1.06);
-  box-shadow: 0 0 0 6px rgba(154,107,255,.14);
+  box-shadow: 0 0 0 7px rgba(159,107,255,.12);
 }
 
 .muz-audio::-webkit-media-controls-timeline{
@@ -409,9 +451,9 @@ input, button{ font: inherit; }
 
 .muz-audio::-webkit-media-controls-current-time-display,
 .muz-audio::-webkit-media-controls-time-remaining-display{
-  color: rgba(244,246,255,.86);
+  color: rgba(246,247,255,.86);
   font-size: 12px;
-  text-shadow: 0 0 10px rgba(0,0,0,.45);
+  text-shadow: 0 0 12px rgba(0,0,0,.50);
   margin: 0 6px;
 }
 
@@ -434,7 +476,7 @@ input, button{ font: inherit; }
 
 .muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb,
 .muz-audio::-webkit-slider-thumb{
-  background: linear-gradient(135deg, rgba(154,107,255,1), rgba(35,215,255,1));
+  background: linear-gradient(135deg, rgba(159,107,255,1), rgba(35,215,255,1));
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -442,13 +484,13 @@ input, button{ font: inherit; }
   border:none;
 }
 
-/* Wave (more premium) */
+/* Wave bar */
 .muz-wave{
   margin-top: 12px;
   height: 12px;
   border-radius: var(--rPill);
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.085);
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.075);
   overflow:hidden;
   position: relative;
 }
@@ -456,7 +498,7 @@ input, button{ font: inherit; }
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(90deg, transparent, rgba(154,107,255,.35), rgba(35,215,255,.22), transparent);
+  background: linear-gradient(90deg, transparent, rgba(159,107,255,.34), rgba(35,215,255,.20), transparent);
   transform: translateX(-60%);
 }
 @media (prefers-reduced-motion: no-preference){
@@ -469,7 +511,7 @@ input, button{ font: inherit; }
   100%{ transform: translateX(60%); }
 }
 
-/* Empty state */
+/* Empty state (#er) */
 #er{
   display:none;
   margin: 16px auto 18px;
@@ -477,21 +519,21 @@ input, button{ font: inherit; }
   width: fit-content;
   border-radius: var(--rPill);
 
-  color: rgba(244,246,255,.92);
-  background: rgba(255,212,0,.08);
-  border: 1px solid rgba(255,212,0,.18);
+  color: rgba(246,247,255,.92);
+  background: rgba(255,212,0,.07);
+  border: 1px solid rgba(255,212,0,.16);
   box-shadow: var(--sh3);
 }
 
-/* =========================
-   MODAL — fixed close button (#krest)
-   ========================= */
+/* =========================================================
+   MODAL (profile) — center panel + close button visible
+   ========================================================= */
 #modal-cart{
   display:none;
   position: fixed;
   inset: 0;
   z-index: 999;
-  padding: 18px;
+  padding-top: 90px; /* space for top-center close */
 }
 
 /* overlay */
@@ -499,100 +541,100 @@ input, button{ font: inherit; }
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0,0,0,.74);
-  backdrop-filter: blur(22px);
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(24px);
 }
 
-/* When JS makes it display:block */
+/* when JS sets display:block */
 #modal-cart[style*="display: block"],
 #modal-cart[style*="display:block"]{
-  display:grid !important;
-  place-items:center;
+  display:flex !important;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Panel */
+/* panel */
 #modal-cart::after{
   content:"";
   position:absolute;
-  z-index: 0;
-  width: min(920px, 94vw);
-  height: min(820px, 88vh);
+  top: 80px;
+  width: min(900px, 94vw);
+  height: min(820px, 86vh);
   border-radius: var(--rHuge);
 
-  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  background: linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,255,255,.025));
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--sh1);
-  backdrop-filter: blur(22px);
+  backdrop-filter: blur(24px);
 }
 
-/* children above panel */
+/* keep modal children above panel */
 #modal-cart > *{
   position: relative;
-  z-index: 1;
-  width: min(920px, 94vw);
+  z-index: 2;
+  width: min(900px, 94vw);
 }
 
-/* --- CLOSE button looks like real button even though it's an img --- */
+/* CLOSE BUTTON — obvious, centered top */
 #krest{
-  width: 34px;
-  height: 34px;
-
-  /* make it a top-right “button” */
   position: absolute;
-  top: 26px;
-  right: 26px;
-  z-index: 3;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
 
-  padding: 10px;
-  border-radius: 999px;
+  width: 68px;
+  height: 68px;
+  padding: 18px;
 
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--rPill);
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.18);
 
-  opacity: .92;
   cursor: pointer;
+  z-index: 1001;
 
-  /* this makes the SVG visible even if it’s dark */
-  filter: drop-shadow(0 16px 26px rgba(0,0,0,.45)) brightness(1.25);
-
-  transition: transform var(--t1), opacity var(--t1), background var(--t1), box-shadow var(--t1);
+  filter: brightness(1.6) drop-shadow(0 16px 34px rgba(0,0,0,.92));
+  transition: transform var(--t1), background var(--t1), box-shadow var(--t1);
 }
+
 #krest:hover{
-  opacity: 1;
-  transform: translateY(-1px) scale(1.05);
-  background: rgba(154,107,255,.14);
-  box-shadow: 0 0 0 6px rgba(154,107,255,.08);
+  transform: translateX(-50%) scale(1.08);
+  background: rgba(159,107,255,.18);
+  box-shadow: 0 0 0 10px rgba(159,107,255,.10), 0 22px 44px rgba(0,0,0,.92);
 }
 
-/* modal typography */
+#krest:active{
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* modal title */
 .pr{
-  margin: 22px 0 6px;
+  margin: 22px 0 8px;
   text-align:center;
-  font-weight: 980;
+  font-weight: 990;
   letter-spacing: .2px;
   font-size: 24px;
-
-  color: rgba(244,246,255,.97);
-  text-shadow: 0 0 30px rgba(154,107,255,.16);
+  color: rgba(246,247,255,.98);
+  text-shadow: 0 0 34px rgba(159,107,255,.14);
 }
 
-/* modal link */
+/* modal links */
 #modal-cart a{
   display:block;
   text-align:center;
   margin-top: 10px;
-  color: rgba(244,246,255,.92);
+  color: rgba(246,247,255,.92);
 }
 #modal-cart a:hover{
   color: rgba(35,215,255,.95);
 }
 
-/* =========================
+/* --------------------------
    Responsive
-   ========================= */
+-------------------------- */
 @media (max-width: 1100px){
   .container{ width: calc(100% - 32px); }
-  .sidebar{ width: 290px; }
+  .sidebar{ width: 300px; }
 }
 
 @media (max-width: 900px){
@@ -611,8 +653,23 @@ input, button{ font: inherit; }
     border-radius: var(--rBig);
   }
   #poisk{ width: calc(100% - 32px); }
+
+  /* modal close still centered */
+  #krest{
+    width: 62px;
+    height: 62px;
+    padding: 16px;
+  }
 }
 
+@media (max-width: 420px){
+  #zagalovok{ font-size: 20px; }
+  .title{ font-size: 17px; }
+  .muz-fav-btn{ width: 54px; height: 54px; }
+  .muz-audio{ height: 62px; }
+}
+
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; animation: none !important; }
 }
