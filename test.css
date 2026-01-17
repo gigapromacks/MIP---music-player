@@ -1,184 +1,375 @@
-/* =========================
-   UGLIEST THEME EVER
-   (intentionally terrible)
-   ========================= */
 
 *{
+  box-sizing: border-box !important;
   font-family: "Comic Sans MS", "Papyrus", cursive !important;
   letter-spacing: 2px !important;
+  cursor: crosshair !important;
+}
+
+html, body{
+  height: 100% !important;
+}
+
+@keyframes jitter{
+  0%{ transform: translate(0,0) rotate(0deg) skewX(0deg); filter: hue-rotate(0deg) saturate(2); }
+  25%{ transform: translate(2px,-1px) rotate(1deg) skewX(6deg); filter: hue-rotate(90deg) saturate(3); }
+  50%{ transform: translate(-2px,2px) rotate(-1deg) skewX(-6deg); filter: hue-rotate(180deg) saturate(3); }
+  75%{ transform: translate(1px,1px) rotate(2deg) skewX(8deg); filter: hue-rotate(270deg) saturate(3); }
+  100%{ transform: translate(0,0) rotate(0deg) skewX(0deg); filter: hue-rotate(360deg) saturate(2); }
+}
+
+@keyframes blink{
+  0%,100%{ opacity: 1; }
+  50%{ opacity: .25; }
 }
 
 body{
-  background:
-    repeating-linear-gradient(45deg,
-      #ff00ff 0 12px,
-      #00ff00 12px 24px,
-      #00ffff 24px 36px,
-      #ffff00 36px 48px
-    ) !important;
-  color: #000 !important;
-  filter: contrast(1.35) saturate(2.1) !important;
-}
-
-/* makes everything weirdly chunky */
-.container{
-  gap: 18px !important;
-  padding: 12px !important;
-}
-
-/* Sidebar – toxic */
-.sidebar{
-  background: #00ff00 !important;
-  border-right: 12px double #ff0000 !important;
-  color: #000 !important;
-  box-shadow: 0 0 0 10px #ffff00, 0 0 0 20px #00ffff !important;
-}
-
-/* Center – “old internet” vibes */
-.center{
-  background: #ffffff !important;
-  border-left: 9px dotted #ff00ff !important;
-  outline: 7px dashed #0000ff !important;
-}
-
-/* Sticky header – screaming */
-.sticky{
-  background: #ff0000 !important;
-  border-bottom: 14px ridge #00ffff !important;
-  box-shadow: 0 14px 0 #ffff00, 0 28px 0 #00ff00 !important;
-}
-
-/* Title – ugly glow + rotation */
-#zagalovok{
-  color: #00ffff !important;
-  background: #0000ff !important;
-  padding: 8px 12px !important;
-  border-radius: 0 !important;
-  border: 6px groove #ffff00 !important;
-  text-shadow: 3px 3px 0 #ff00ff, -3px -3px 0 #00ff00 !important;
-  display: inline-block !important;
-  transform: rotate(-2deg) skewX(6deg) !important;
-}
-
-/* Search – hard to look at */
-#poisk{
-  width: 97% !important;
   margin: 0 !important;
-  background: #ffff00 !important;
+  overflow: hidden !important;
+
+  background:
+    repeating-linear-gradient(45deg, #ff00ff 0 12px, #00ff00 12px 24px, #00ffff 24px 36px, #ffff00 36px 48px),
+    repeating-radial-gradient(circle at 20% 20%, #ffffff 0 10px, #000000 10px 20px) !important;
+
+  animation: jitter 0.35s infinite !important;
+
+  color: #000 !important;
+  text-shadow: 2px 2px 0 #fff, -2px -2px 0 #f0f !important;
+}
+
+/* ====== Search (your input is #poisk and also has class sticky) ====== */
+#poisk{
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999999 !important;
+
+  width: 99vw !important;
+  margin: 0 !important;
+  padding: 18px !important;
+
+  background: #00ffff !important;
   color: #ff00ff !important;
-  border: 8px inset #00ff00 !important;
+
+  border: 14px inset #ff0000 !important;
   border-radius: 0 !important;
-  padding: 14px !important;
-  box-shadow: inset 0 0 0 6px #ff0000 !important;
+
+  font-size: 22px !important;
+  font-weight: 900 !important;
+
+  box-shadow: inset 0 0 0 8px #ffff00, 0 0 0 12px #00ff00 !important;
+  animation: blink 0.55s steps(2,end) infinite !important;
 }
 #poisk::placeholder{
   color: #0000ff !important;
   font-weight: 900 !important;
+  text-transform: uppercase !important;
 }
 
-/* Avatar – painful */
-.avatar{
-  background: radial-gradient(circle, #ff00ff, #00ffff, #ffff00) !important;
-  border: 10px solid #000 !important;
-  border-radius: 0 !important;
-  transform: rotate(8deg) !important;
+/* ====== Main layout ====== */
+.container{
+  display: flex !important;
+  height: calc(100vh - 78px) !important;
+  gap: 14px !important;
+  padding: 10px !important;
+  transform: skewY(1.8deg) !important;
 }
 
-/* Track card – disgusting */
-.muz{
-  background:
-    repeating-radial-gradient(circle at 20% 20%,
-      #ff00ff 0 10px,
-      #00ff00 10px 20px,
-      #ffff00 20px 30px
-    ) !important;
-  border-radius: 0 !important;
-  border: 10px solid #0000ff !important;
-  outline: 8px dashed #ff0000 !important;
-  box-shadow: 0 0 0 8px #00ffff, 0 0 0 16px #ffff00 !important;
-  transform: rotate(0.6deg) !important;
+/* both sidebars in your HTML share same class */
+.sidebar{
+  width: 230px !important;
+  flex-shrink: 0 !important;
+
+  background: linear-gradient(135deg, #00ff00, #ff00ff) !important;
+  border: 18px dashed #0000ff !important;
+  outline: 10px dotted #ff0000 !important;
+
+  box-shadow: 0 0 0 10px #ffff00, 0 0 0 20px #00ffff !important;
+  transform: rotate(-2deg) !important;
+
+  padding: 10px !important;
 }
 
-/* Title inside card – centered for maximum awkwardness */
-.title{
-  padding-left: 0 !important;
-  text-align: center !important;
-  font-size: 22px !important;
+/* ====== Center content ====== */
+.center{
+  flex: 1 !important;
+  height: 100% !important;
+  overflow-y: auto !important;
+
+  background: repeating-linear-gradient(90deg, #ffffff 0 14px, #000000 14px 28px) !important;
+  border: 12px ridge #ff00ff !important;
+  outline: 10px dotted #00ffff !important;
+
+  padding: 14px !important;
+  transform: rotate(1deg) !important;
+}
+
+/* make scrollbar disgusting */
+.center::-webkit-scrollbar{ width: 18px !important; }
+.center::-webkit-scrollbar-thumb{
+  background: repeating-linear-gradient(180deg, #ff00ff 0 8px, #00ff00 8px 16px) !important;
+  border: 6px solid #000 !important;
+}
+.center::-webkit-scrollbar-track{
+  background: #ffff00 !important;
+}
+
+/* ====== “MIT музыка” header link ====== */
+#zagalovok{
+  margin: 6px 0 14px !important;
+  display: inline-block !important;
+
+  font-size: 28px !important;
   font-weight: 900 !important;
-  color: #ff0000 !important;
-  background: #00ffff !important;
-  border: 6px dotted #ff00ff !important;
+  text-transform: uppercase !important;
+
+  color: #00ff00 !important;
+  background: #000 !important;
+
+  border: 12px groove #ff00ff !important;
+  padding: 10px 12px !important;
+
+  text-shadow: 4px 4px 0 #ffff00, -4px -4px 0 #00ffff !important;
+  transform: rotate(-6deg) skewX(8deg) !important;
+
+  animation: blink 0.45s steps(2,end) infinite !important;
 }
 
-/* Favorite button – huge and annoying */
+/* ====== Ugly buttons (folow) ====== */
+.folow{
+  margin: 12px 0 !important;
+  padding: 14px !important;
+  width: 100% !important;
+
+  background: #ff0000 !important;
+  color: #ffff00 !important;
+
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border: 14px outset #00ffff !important;
+
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+
+  box-shadow: 0 0 0 8px #00ff00 !important;
+
+  transform: rotate(2deg) !important;
+  animation: jitter 0.55s infinite !important;
+}
+.folow:hover{
+  filter: invert(1) hue-rotate(120deg) !important;
+}
+
+/* ====== Tracks ====== */
+.muz{
+  position: relative !important;
+  margin: 16px 0 !important;
+  padding: 14px !important;
+
+  background: repeating-radial-gradient(circle at 40% 40%, #ffff00 0 10px, #00ff00 10px 20px, #00ffff 20px 30px) !important;
+
+  border-radius: 0 !important;
+  border: 16px double #000 !important;
+  outline: 10px dashed #ff00ff !important;
+
+  box-shadow: 0 0 0 10px #ff0000, 0 0 0 20px #0000ff !important;
+
+  transform: rotate(1deg) !important;
+  animation: jitter 0.30s infinite !important;
+}
+
+/* watermark for extra ugliness */
+.muz::after{
+  content: "!!! У ВАС НА ПК РАБОТАЕТ МАЙНЕР !!!" !important;
+  position: absolute !important;
+  left: 8px !important;
+  bottom: 8px !important;
+
+  background: #ff00ff !important;
+  color: #00ffff !important;
+  border: 8px solid #000 !important;
+
+  padding: 6px 10px !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+
+  transform: rotate(-3deg) !important;
+  opacity: .95 !important;
+}
+
+/* Title inside track card */
+.title{
+  margin: 0 80px 12px 0 !important;
+  padding: 10px !important;
+  text-align: center !important;
+
+  font-size: 26px !important;
+  font-weight: 900 !important;
+
+  background: #ff00ff !important;
+  color: #00ffff !important;
+
+  border: 10px dashed #000 !important;
+  text-shadow: 3px 3px 0 #ffff00 !important;
+}
+
+/* Favorite button */
 .muz-fav-btn{
   position: absolute !important;
-  top: -8px !important;
-  right: -8px !important;
-  width: 64px !important;
-  height: 64px !important;
-  border-radius: 0 !important;
-  border: 10px outset #ffff00 !important;
+  top: -10px !important;
+  right: -10px !important;
+
+  width: 82px !important;
+  height: 82px !important;
+
   background: #00ff00 !important;
   color: #ff00ff !important;
-  font-size: 28px !important;
-  box-shadow: 0 0 0 6px #ff0000 !important;
+
+  border-radius: 0 !important;
+  border: 16px ridge #ffff00 !important;
+
+  font-size: 34px !important;
+  font-weight: 900 !important;
+
+  box-shadow: 0 0 0 10px #000 !important;
+  animation: blink 0.30s steps(2,end) infinite !important;
 }
 .muz-fav-btn:hover{
   transform: rotate(20deg) scale(1.1) !important;
 }
 .muz-fav-btn.active{
-  background: #ff00ff !important;
-  color: #00ffff !important;
-}
-
-/* Audio – brutal */
-.muz-audio{
-  height: 70px !important;
-  border: 10px solid #000 !important;
-  border-radius: 0 !important;
-  filter: hue-rotate(180deg) contrast(1.6) !important;
-}
-
-/* Follow button – like a ransom note */
-.folow{
-  background: #000 !important;
-  color: #ffff00 !important;
-  border: 8px dashed #ff00ff !important;
-  border-radius: 0 !important;
-  padding: 14px 18px !important;
-  text-transform: uppercase !important;
-  transform: rotate(-3deg) !important;
-}
-
-/* Error – impossible to ignore */
-#er{
-  background: #ff00ff !important;
-  color: #00ff00 !important;
-  border: 10px double #0000ff !important;
-  padding: 18px !important;
-  font-size: 22px !important;
-}
-
-/* Modal – eye-watering */
-#modal-cart{
-  background: #ffff00 !important;
-  border: 16px ridge #ff0000 !important;
-  box-shadow: 0 0 0 12px #00ffff, 0 0 0 24px #00ff00 !important;
-}
-#krest{
-  width: 40px !important;
-  height: 40px !important;
   background: #ff0000 !important;
-  border: 6px solid #000 !important;
+  color: #ffff00 !important;
 }
 
-/* ⚠️ Optional: blinking (comment out if you hate flicker too much) */
-.sticky, .muz, #zagalovok, .muz-fav-btn{
-  animation: horribleBlink 0.55s steps(2, end) infinite !important;
+/* Audio player */
+.muz-audio{
+  width: 100% !important;
+  height: 86px !important;
+
+  border-radius: 0 !important;
+  border: 16px solid #000 !important;
+  outline: 10px dotted #00ffff !important;
+
+  filter: hue-rotate(240deg) saturate(3) contrast(1.6) !important;
 }
-@keyframes horribleBlink{
-  0%{ filter: hue-rotate(0deg); transform: rotate(-1deg) scale(1.01); }
-  50%{ filter: hue-rotate(150deg); transform: rotate(1deg) scale(0.99); }
-  100%{ filter: hue-rotate(300deg); transform: rotate(-1deg) scale(1.01); }
+
+/* Optional ugly wave */
+.muz-wave{
+  margin-top: 10px !important;
+  height: 18px !important;
+  background: repeating-linear-gradient(90deg, #ff0000 0 6px, #00ff00 6px 12px, #0000ff 12px 18px) !important;
+  border: 8px inset #ffff00 !important;
+  animation: blink 0.25s steps(2,end) infinite !important;
+}
+
+/* ====== Right sidebar button */
+.sidebar button{
+  width: 100% !important;
+  padding: 14px !important;
+
+  background: #0000ff !important;
+  color: #ffff00 !important;
+
+  border: 14px outset #ff0000 !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+
+  transform: rotate(-3deg) !important;
+  animation: jitter 0.5s infinite !important;
+}
+
+/* ====== Error text ====== */
+#er{
+  display:none; /* you control it in JS */
+  margin: 20px auto !important;
+  padding: 18px !important;
+
+  background: #00ffff !important;
+  color: #000 !important;
+
+  border: 16px ridge #ff0000 !important;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+
+  animation: blink 0.35s steps(2,end) infinite !important;
+}
+
+/* ====== Modal ====== */
+#modal-cart{
+  display:none; /* keep */
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) rotate(2deg) !important;
+
+  width: min(900px, 92vw) !important;
+  height: min(900px, 88vh) !important;
+
+  background: repeating-linear-gradient(45deg, #ff00ff 0 12px, #000 12px 24px) !important;
+  border: 22px double #ffff00 !important;
+  outline: 14px dashed #00ff00 !important;
+
+  box-shadow: 0 0 0 14px #00ffff, 0 0 0 28px #ff0000 !important;
+
+  padding: 12px !important;
+  z-index: 9999999 !important;
+
+  animation: jitter 0.25s infinite !important;
+}
+
+#krest{
+  width: 46px !important;
+  height: 46px !important;
+  background: #ffff00 !important;
+  border: 12px solid #000 !important;
+  padding: 0 !important;
+  margin-left: auto !important;
+  display:block !important;
+  cursor:pointer !important;
+}
+
+/* Profile title */
+.pr{
+  margin: 10px 0 !important;
+  text-align:center !important;
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  color: #00ff00 !important;
+  background: #000 !important;
+  border: 12px groove #ff00ff !important;
+  padding: 8px !important;
+  animation: blink 0.45s steps(2,end) infinite !important;
+}
+
+/* Links in modal */
+a{ color: #00ffff !important; text-decoration: underline wavy #ff0000 !important; }
+a:hover{ filter: invert(1) !important; }
+
+/* =========================
+   Mobile (still ugly)
+   ========================= */
+@media (max-width: 900px){
+  body{ overflow:auto !important; } /* let it scroll, still cursed */
+  .container{
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .sidebar{
+    width: auto !important;
+    transform: rotate(0deg) !important;
+  }
+  .center{
+    transform: rotate(0deg) !important;
+    height: auto !important;
+    max-height: 65vh !important;
+  }
+  .muz-fav-btn{
+    width: 70px !important;
+    height: 70px !important;
+  }
+  .muz-audio{
+    height: 96px !important;
+  }
 }
