@@ -1,0 +1,271 @@
+body{
+    background-color: black/*rgb(15, 15, 15)*/;
+    overflow: hidden; /* Отключаем прокрутку всей страницы */
+    margin: 0; /* Добавьте это */
+    height: 100vh; /* Добавьте это */
+}
+.sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 9999999;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+#poisk{
+    margin-left: 200px;
+width: 1505px;
+color:white;
+}
+input{
+    border: none;
+}
+/* Центр - прокручивается */
+.center {
+    flex: 1;
+    background: rgb(20, 20, 20);
+    height: 100vh;
+    overflow-y: auto; /* Только здесь прокрутка */
+    padding: 20px;
+}
+.sidebar {
+    width: 200px;
+    /*background: black;*/
+    height: 100%;
+   
+        flex-shrink: 0;
+ 
+color: black;
+}
+.container {
+    display: flex; /* Вот это главное! */
+    height: 100vh;
+}
+/* ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ ЗАГОЛОВКА */
+#zagalovok {
+    color: yellow;
+    text-shadow: 
+        0 0 5px yellow,
+        0 0 10px yellow,
+        0 0 15px yellow;
+
+    background-color: transparent; /* Полностью прозрачный фон */
+    border-radius: 5px;
+    display: inline-block; /* Чтобы тень применялась только к тексту */
+    margin: 10px;
+    letter-spacing: 1px; /* Разреженные буквы для лучшего эффекта */
+}
+.play{
+    margin-top: 20px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: aqua;
+margin-left: 80px;
+}
+#modal-cart{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: rgb(253, 227, 196);
+height: 900px;
+width: 900px;
+
+margin-top: 10px;
+}
+.pr{
+margin-left: 38%;
+}
+#krest{
+    width: 23px;
+    height: 23x;
+padding-left: 97%;
+
+}
+/*          Музыка                              */
+/*                                        */
+/*                                         */
+/*                                            */
+/* Добавление кнопки "Добавить в избранное" */
+.muz-fav-btn {
+  position: absolute;
+   margin-right: 222px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+right: -216px;
+
+   border-radius: 50%;
+}
+
+.muz-fav-btn:hover {
+    color: yellow;
+
+}
+
+.muz-fav-btn.active {
+    color: red;
+}
+
+
+
+.muz{
+background-color: rgb(73, 72, 72);
+border-radius: 15px;
+position: relative;
+}
+.title{
+    padding-left: 47%;
+}
+
+
+
+/* Базовые стили аудиоплеера */
+.muz-audio {
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+    outline: none;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
+    border-radius: 12px;
+}
+
+/* Панель управления аудио */
+.muz-audio::-webkit-media-controls-panel {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.95));
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 0, 0.2);
+    padding: 8px;
+}
+
+/* Кнопка воспроизведения */
+.muz-audio::-webkit-media-controls-play-button {
+    background-color: yellow;
+    border-radius: 50%;
+    border: none;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+}
+
+.muz-audio::-webkit-media-controls-play-button:hover {
+    background-color: #ffd700;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+/* Ползунки */
+.muz-audio::-webkit-media-controls-timeline {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+    margin: 0 10px;
+}
+
+.muz-audio::-webkit-media-controls-current-time-display,
+.muz-audio::-webkit-media-controls-time-remaining-display {
+    color: white;
+    font-size: 12px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+}
+
+/* Ползунок громкости */
+.muz-audio::-webkit-media-controls-volume-slider-container,
+.muz-audio::-webkit-media-controls-volume-slider {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+}
+
+.muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background: yellow;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Кнопка громкости */
+.muz-audio::-webkit-media-controls-mute-button {
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.muz-audio::-webkit-media-controls-mute-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ползунок прогресса */
+.muz-audio::-webkit-slider-thumb {
+    background: yellow;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+
+/* Для Firefox */
+.muz-audio::-moz-range-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+}
+
+.muz-audio::-moz-range-thumb {
+    background: yellow;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .muz-audio {
+        height: 45px;
+    }
+    
+    .muz-audio::-webkit-media-controls-panel {
+        padding: 5px;
+    }
+}
+
+/*                       Конец  Музыки               */
+/*                                                   */
+/*                                                   */
+/*                                                   */
+
+.folow{
+   padding-top: 6px;
+   padding-left: 17%; 
+ margin-top: 20px;
+
+ color:white;
+   background: rgb(156, 42, 42);
+height: 30px;
+   width: 100px;
+border-top-right-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+#er{
+    display: none;
+    margin-top:100px;
+    margin-left:430px;
+color: white;
+}
