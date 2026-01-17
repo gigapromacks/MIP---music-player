@@ -1,40 +1,38 @@
 /* =========================
-   Premium UI (100/100)
-   Works with your selectors
+   Yandex-like dark UI (Premium)
+   - Works with your selectors
+   - Responsive mobile/desktop
    ========================= */
 
 :root{
-  /* Colors */
-  --bg0:#07070b;
-  --bg1:#0b0b12;
-  --panel: rgba(255,255,255,.06);
-  --panel2: rgba(255,255,255,.08);
+  --bg0:#0a0b0f;
+  --bg1:#0f1118;
+
+  --glass: rgba(255,255,255,.06);
+  --glass2: rgba(255,255,255,.08);
   --stroke: rgba(255,255,255,.10);
   --stroke2: rgba(255,255,255,.14);
 
-  --text:#f3f4ff;
-  --muted:rgba(243,244,255,.72);
-  --muted2:rgba(243,244,255,.55);
+  --text:#f3f5ff;
+  --muted: rgba(243,245,255,.70);
+  --muted2: rgba(243,245,255,.52);
 
-  --accent:#ffd400;     /* yellow */
-  --accent2:#ff4d8d;    /* pink */
-  --good:#2ee59d;
+  /* “yandex vibe”: warm yellow + subtle accent */
+  --y: #ffd400;
+  --y2:#ffb800;
 
-  /* Radius */
-  --r10:10px;
-  --r14:14px;
-  --r18:18px;
-  --r22:22px;
+  --r12:12px;
+  --r16:16px;
+  --r20:20px;
+  --r24:24px;
 
-  /* Shadow */
-  --sh1: 0 14px 42px rgba(0,0,0,.55);
-  --sh2: 0 10px 26px rgba(0,0,0,.40);
-  --sh3: 0 6px  16px rgba(0,0,0,.32);
+  --sh1: 0 18px 50px rgba(0,0,0,.55);
+  --sh2: 0 12px 28px rgba(0,0,0,.40);
+  --sh3: 0  8px 18px rgba(0,0,0,.32);
 
-  /* Motion */
   --ease: cubic-bezier(.2,.8,.2,1);
-  --t1: 160ms var(--ease);
-  --t2: 240ms var(--ease);
+  --t1: 140ms var(--ease);
+  --t2: 220ms var(--ease);
 }
 
 *{ box-sizing:border-box; }
@@ -42,28 +40,27 @@ html,body{ height:100%; }
 body{
   margin:0;
   height:100vh;
-  overflow:hidden; /* scroll only in .center */
-  color:var(--text);
+  overflow:hidden;
+  color: var(--text);
   font: 500 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
 
   background:
-    radial-gradient(1200px 700px at 18% -10%, rgba(255,212,0,.18), transparent 55%),
-    radial-gradient(900px 650px at 95% 8%, rgba(255,77,141,.12), transparent 55%),
-    radial-gradient(900px 650px at 50% 120%, rgba(46,229,157,.10), transparent 55%),
+    radial-gradient(900px 560px at 18% -10%, rgba(255,212,0,.14), transparent 56%),
+    radial-gradient(900px 560px at 92% 6%, rgba(255,184,0,.08), transparent 56%),
+    radial-gradient(900px 760px at 50% 120%, rgba(255,212,0,.06), transparent 60%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-/* Selection */
-::selection{ background: rgba(255,212,0,.25); }
+::selection{ background: rgba(255,212,0,.22); }
 
-/* Accessibility */
 :focus-visible{
   outline: none;
-  box-shadow: 0 0 0 3px rgba(255,212,0,.16), 0 0 0 1px rgba(255,212,0,.35);
-  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(255,212,0,.14), 0 0 0 1px rgba(255,212,0,.32);
+  border-radius: 12px;
 }
 
-img{ max-width:100%; display:block; }
+input, button{ font: inherit; }
+input{ border:none; outline:none; background:transparent; color:inherit; }
 
 /* =========================
    Layout
@@ -74,29 +71,29 @@ img{ max-width:100%; display:block; }
   width:100%;
 }
 
-/* Sidebar — classy glass */
+/* Sidebar: desktop */
 .sidebar{
-  width: 260px;
+  width: 280px;
   flex-shrink:0;
   height:100%;
-  padding:18px 16px;
+  padding: 18px 16px;
   color: var(--text);
 
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
   border-right: 1px solid var(--stroke);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
 }
 
+/* Main scroll area */
 .center{
   flex:1;
   height:100vh;
   overflow-y:auto;
-  padding: 18px 18px 26px;
+  padding: 18px 18px 28px;
 }
 
-/* scrollbar */
-.center::-webkit-scrollbar{ width:10px; }
+/* nicer scrollbar */
+.center::-webkit-scrollbar{ width: 10px; }
 .center::-webkit-scrollbar-thumb{
   background: rgba(255,255,255,.14);
   border-radius: 999px;
@@ -106,51 +103,56 @@ img{ max-width:100%; display:block; }
 .center::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.22); }
 
 /* =========================
-   Sticky header (top bar)
+   Sticky header: title + search
    ========================= */
 .sticky{
   position: sticky;
-  top: 0;
-  z-index: 60;
-
+  top:0;
+  z-index:60;
   padding: 12px 0 16px;
-  background:
-    linear-gradient(180deg, rgba(7,7,11,.92), rgba(7,7,11,.68));
-  backdrop-filter: blur(16px);
+
+  background: linear-gradient(180deg, rgba(10,11,15,.92), rgba(10,11,15,.68));
   border-bottom: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
 }
 
-/* Title — premium neon */
+/* Title (more “app” style) */
 #zagalovok{
   margin: 0 0 10px 0;
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
 
   font-weight: 900;
-  letter-spacing: .9px;
   font-size: 18px;
+  letter-spacing: .3px;
 
-  color: var(--accent);
-  text-shadow:
-    0 0 14px rgba(255,212,0,.35),
-    0 0 32px rgba(255,212,0,.16);
+  color: rgba(243,245,255,.96);
 }
 
-/* Search */
+/* small dot accent near title (optional feel) */
+#zagalovok::before{
+  content:"";
+  width:10px; height:10px;
+  border-radius:999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), rgba(255,212,0,.95));
+  box-shadow: 0 0 0 4px rgba(255,212,0,.10);
+}
+
+/* Search bar: “app-like pill” */
 #poisk{
   margin: 0;
   width: min(980px, 100%);
   padding: 12px 14px;
 
-  color: var(--text);
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
-  border-radius: var(--r18);
+  border-radius: 999px;
+
   box-shadow: var(--sh3);
-
-  transition: box-shadow var(--t2), border-color var(--t2), transform var(--t2), background var(--t2);
+  transition: border-color var(--t2), background var(--t2), transform var(--t2), box-shadow var(--t2);
 }
-
-#poisk::placeholder{ color: rgba(243,244,255,.45); }
+#poisk::placeholder{ color: rgba(243,245,255,.42); }
 #poisk:hover{
   background: rgba(255,255,255,.075);
   border-color: rgba(255,255,255,.14);
@@ -161,97 +163,77 @@ img{ max-width:100%; display:block; }
   transform: translateY(-1px);
 }
 
-/* If you have generic inputs */
-input{
-  border:none;
-  outline:none;
-  background: transparent;
-}
-
-/* =========================
-   Avatar
-   ========================= */
+/* Avatar */
 .avatar{
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
   margin-left: auto;
-
   background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 42%),
-    linear-gradient(135deg, rgba(255,212,0,.92), rgba(255,77,141,.80));
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 44%),
+    linear-gradient(135deg, rgba(255,212,0,.92), rgba(255,184,0,.72));
   border: 1px solid rgba(255,255,255,.14);
   box-shadow: var(--sh3);
 }
 
 /* =========================
-   Track cards (muz)
+   Track card (muz): compact, clean, premium
    ========================= */
 .muz{
   position: relative;
   margin: 12px 0;
   padding: 14px 14px 12px;
-
-  border-radius: var(--r22);
+  border-radius: var(--r24);
   border: 1px solid rgba(255,255,255,.10);
 
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.045));
   box-shadow: var(--sh2);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
+  overflow:hidden;
 
-  transition: transform var(--t1), border-color var(--t1), background var(--t1), box-shadow var(--t1);
-  overflow: hidden;
+  transition: transform var(--t1), border-color var(--t1), box-shadow var(--t1), background var(--t1);
 }
 
-/* subtle shine */
+/* subtle highlight */
 .muz::before{
   content:"";
   position:absolute;
-  inset:-2px;
+  inset:-1px;
   background:
-    radial-gradient(500px 200px at 10% 0%, rgba(255,212,0,.10), transparent 60%),
-    radial-gradient(500px 200px at 90% 0%, rgba(255,77,141,.08), transparent 60%);
+    radial-gradient(500px 240px at 15% 0%, rgba(255,212,0,.12), transparent 60%),
+    radial-gradient(600px 260px at 85% 0%, rgba(255,184,0,.07), transparent 62%);
   opacity:.85;
   pointer-events:none;
 }
 
 .muz:hover{
   transform: translateY(-2px);
-  border-color: rgba(255,212,0,.20);
+  border-color: rgba(255,212,0,.22);
   box-shadow: var(--sh1);
 }
 
-.muz:active{
-  transform: translateY(-1px);
-}
-
-/* Title inside card */
+/* Track title (align like app) */
 .title{
-  margin: 0 52px 10px 0;  /* space for fav button */
-  padding-left: 0;
-  text-align: left;
-
+  margin: 0 56px 10px 0; /* space for fav button */
+  padding:0;
+  text-align:left;
   font-weight: 850;
   font-size: 15px;
   letter-spacing: .2px;
-
-  color: rgba(243,244,255,.96);
+  color: rgba(243,245,255,.96);
 }
 
-/* Favorite button — perfect placement */
+/* Favorite button: compact rounded-square */
 .muz-fav-btn{
   position:absolute;
   top: 10px;
   right: 10px;
   width: 42px;
   height: 42px;
-  padding: 0;
-
   display:grid;
   place-items:center;
 
-  background: rgba(0,0,0,.22);
+  background: rgba(0,0,0,.20);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 16px;
 
@@ -259,41 +241,43 @@ input{
   cursor:pointer;
 
   transition: transform var(--t1), background var(--t1), color var(--t1), border-color var(--t1), box-shadow var(--t1);
+  padding:0;
+  margin:0;
 }
 .muz-fav-btn:hover{
   background: rgba(255,212,0,.12);
   border-color: rgba(255,212,0,.24);
-  color: var(--accent);
+  color: var(--y);
   transform: translateY(-1px);
   box-shadow: 0 0 0 3px rgba(255,212,0,.10);
 }
 .muz-fav-btn.active{
-  background: rgba(255,77,141,.14);
-  border-color: rgba(255,77,141,.28);
-  color: var(--accent2);
+  background: rgba(255,212,0,.16);
+  border-color: rgba(255,212,0,.32);
+  color: var(--y2);
 }
 
 /* =========================
-   Audio player — polished
+   Audio: polish (keeps your custom WebKit styling)
    ========================= */
 .muz-audio{
-  width: 100%;
+  width:100%;
   height: 46px;
   margin-top: 8px;
-  border-radius: var(--r18);
-  outline: none;
+  border-radius: 999px;
+  outline:none;
   filter: drop-shadow(0 10px 18px rgba(0,0,0,.36));
 }
 
-/* WebKit media controls */
 .muz-audio::-webkit-media-controls-panel{
-  background: linear-gradient(135deg, rgba(20,20,30,.96), rgba(12,12,18,.96));
-  border-radius: var(--r18);
+  background: linear-gradient(135deg, rgba(20,20,28,.96), rgba(12,12,16,.96));
+  border-radius: 999px;
   border: 1px solid rgba(255,255,255,.12);
   padding: 8px;
 }
+
 .muz-audio::-webkit-media-controls-play-button{
-  background-color: var(--accent);
+  background-color: var(--y);
   border-radius: 50%;
   transition: transform var(--t1), box-shadow var(--t1);
   width: 34px;
@@ -303,19 +287,22 @@ input{
   transform: scale(1.06);
   box-shadow: 0 0 0 4px rgba(255,212,0,.16);
 }
+
 .muz-audio::-webkit-media-controls-timeline{
   background: rgba(255,255,255,.10);
   border-radius: 999px;
   height: 4px;
   margin: 0 10px;
 }
+
 .muz-audio::-webkit-media-controls-current-time-display,
 .muz-audio::-webkit-media-controls-time-remaining-display{
-  color: rgba(243,244,255,.88);
+  color: rgba(243,245,255,.88);
   font-size: 12px;
   text-shadow: 0 0 10px rgba(0,0,0,.35);
   margin: 0 6px;
 }
+
 .muz-audio::-webkit-media-controls-mute-button{
   background-color: transparent;
   border-radius: 12px;
@@ -325,26 +312,22 @@ input{
 .muz-audio::-webkit-media-controls-mute-button:hover{
   background-color: rgba(255,255,255,.10);
 }
+
 .muz-audio::-webkit-media-controls-volume-slider-container,
 .muz-audio::-webkit-media-controls-volume-slider{
   background: rgba(255,255,255,.10);
   border-radius: 999px;
   height: 4px;
 }
-.muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb{
-  background: var(--accent);
+
+.muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb,
+.muz-audio::-webkit-slider-thumb{
+  background: var(--y);
   width: 12px;
   height: 12px;
   border-radius: 50%;
   cursor:pointer;
-}
-.muz-audio::-webkit-slider-thumb{
-  background: var(--accent);
-  border: none;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
+  border:none;
 }
 
 /* Firefox */
@@ -354,7 +337,7 @@ input{
   height: 4px;
 }
 .muz-audio::-moz-range-thumb{
-  background: var(--accent);
+  background: var(--y);
   border: none;
   border-radius: 50%;
   width: 12px;
@@ -363,20 +346,18 @@ input{
 }
 
 /* =========================
-   Follow button — premium pill
+   Follow button
    ========================= */
 .folow{
   margin-top: 18px;
   padding: 10px 14px;
-
   width: fit-content;
-  height: auto;
 
-  color: rgba(15,15,20,.95);
+  color: rgba(10,11,15,.95);
   font-weight: 900;
   letter-spacing: .2px;
 
-  background: linear-gradient(135deg, rgba(255,212,0,.95), rgba(255,77,141,.78));
+  background: linear-gradient(135deg, rgba(255,212,0,.95), rgba(255,184,0,.78));
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 999px;
   box-shadow: var(--sh2);
@@ -386,83 +367,52 @@ input{
 .folow:hover{
   transform: translateY(-1px);
   box-shadow: var(--sh1);
-  filter: saturate(1.05);
+  filter: saturate(1.04);
 }
 .folow:active{ transform: translateY(0); }
 
 /* =========================
-   Modal — centered + overlay
+   Modal: overlay + centered panel
    ========================= */
 #modal-cart{
   display:none;
   position: fixed;
-  inset: 0;                 /* overlay area */
+  inset: 0;
   z-index: 999;
-  padding: 20px;
+  padding: 18px;
 }
 
-/* overlay */
 #modal-cart::before{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0,0,0,.65);
-  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.64);
+  backdrop-filter: blur(14px);
 }
 
-/* modal panel itself (use a child wrapper if you have it, but we’ll style the element itself as panel) */
-#modal-cart{
-  /* panel container itself */
-  place-items: center;
-}
-#modal-cart{
-  display:none; /* keep */
-}
+/* If JS sets display:block — make it grid automatically */
 #modal-cart[style*="display: block"],
 #modal-cart[style*="display:block"]{
-  display:grid; /* when JS toggles display:block it becomes grid automatically */
+  display:grid !important;
+  place-items:center;
 }
 
-#modal-cart > *{
+/* Recommended: wrap modal content into .modal-content
+   If you don't have it — this still styles the first child */
+#modal-cart .modal-content,
+#modal-cart > :first-child{
   position: relative;
   z-index: 1;
-}
 
-/* If your content is inside #modal-cart directly, this makes it a panel */
-#modal-cart{
-  /* We will create a panel using an inner pseudo wrapper via background on a child:
-     If there isn't a child wrapper, panel styles will apply to whatever you put inside.
-     Most reliable approach: your modal content should be a single inner div.
-  */
-}
-
-#modal-cart .modal-content{
-  width: min(900px, 92vw);
-  height: min(820px, 86vh);
+  width: min(920px, 94vw);
+  height: min(820px, 88vh);
   overflow:auto;
 
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
   border: 1px solid rgba(255,255,255,.14);
-  border-radius: var(--r22);
+  border-radius: var(--r24);
   box-shadow: var(--sh1);
-  backdrop-filter: blur(16px);
-
-  padding: 16px;
-}
-
-/* If you don't have .modal-content, style direct modal children as a panel */
-#modal-cart:not(:has(.modal-content)) > div,
-#modal-cart:not(:has(.modal-content)) > section,
-#modal-cart:not(:has(.modal-content)) > main{
-  width: min(900px, 92vw);
-  height: min(820px, 86vh);
-  overflow:auto;
-
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: var(--r22);
-  box-shadow: var(--sh1);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 
   padding: 16px;
 }
@@ -471,53 +421,54 @@ input{
 #krest{
   width: 26px;
   height: 26px;
-  display:block;
   cursor:pointer;
   opacity:.85;
   transition: opacity var(--t1), transform var(--t1);
+  margin-left: auto;
+  display:block;
 }
-#krest:hover{
-  opacity:1;
-  transform: scale(1.05);
-}
+#krest:hover{ opacity:1; transform: scale(1.06); }
 
 .pr{
   margin: 0 0 12px;
   text-align:center;
   font-weight: 900;
   letter-spacing:.2px;
-  color: var(--text);
 }
 
-/* =========================
-   Error message
-   ========================= */
+/* Error */
 #er{
   display:none;
   margin: 110px auto 0;
   width: fit-content;
-
-  color: rgba(243,244,255,.92);
+  color: rgba(243,245,255,.92);
   padding: 12px 14px;
 
-  background: rgba(255,77,141,.10);
-  border: 1px solid rgba(255,77,141,.22);
+  background: rgba(255,212,0,.10);
+  border: 1px solid rgba(255,212,0,.22);
   border-radius: 999px;
   box-shadow: var(--sh3);
 }
 
 /* =========================
-   Responsive
+   Mobile behavior (feels like app)
+   - sidebar becomes bottom “mini-nav” feel (simple: hide it)
+   - paddings become tighter
    ========================= */
-@media (max-width: 980px){
-  .sidebar{ width: 220px; }
+@media (max-width: 900px){
+  .sidebar{ display:none; }      /* проще всего. Если хочешь — сделаем bottom-bar */
+  .center{ padding: 14px 12px 18px; }
+  .sticky{ padding: 10px 0 14px; }
   #poisk{ width: 100%; }
+  .muz{ padding-right: 58px; border-radius: 20px; }
+  .muz-audio{ height: 50px; }
 }
 
-@media (max-width: 820px){
-  .sidebar{ display:none; } /* feels premium on mobile */
-  .center{ padding: 14px; }
-  .muz{ padding-right: 58px; }
+/* Small phones */
+@media (max-width: 420px){
+  #zagalovok{ font-size: 16px; }
+  .title{ font-size: 14px; }
+  .muz-fav-btn{ width: 40px; height: 40px; border-radius: 14px; }
 }
 
 /* Reduce motion */
