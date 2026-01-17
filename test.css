@@ -1,0 +1,362 @@
+/* ====== Base ====== */
+:root{
+  --bg:#0b0b0f;
+  --panel:#121218;
+  --panel2:#171722;
+  --card:#1b1b28;
+  --stroke:rgba(255,255,255,.10);
+
+  --text:#f1f1ff;
+  --muted:rgba(241,241,255,.70);
+
+  --accent:#ffd400;     /* желтый */
+  --accent2:#ff5c8a;    /* розово-красный */
+  --good:#2ee59d;
+
+  --r12:12px;
+  --r16:16px;
+  --shadow: 0 12px 35px rgba(0,0,0,.45);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden; /* прокрутка только в .center */
+  color:var(--text);
+  font: 500 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  background:
+    radial-gradient(900px 600px at 15% -10%, rgba(255,212,0,.16), transparent 55%),
+    radial-gradient(900px 600px at 95% 10%, rgba(255,92,138,.10), transparent 55%),
+    linear-gradient(180deg, #07070a, var(--bg));
+}
+
+input, button{
+  font: inherit;
+}
+
+input{
+  border:none;
+  outline:none;
+}
+
+/* ====== Layout ====== */
+.container{
+  display:flex;
+  height:100vh;
+  width:100%;
+}
+
+.sidebar{
+  width: 220px;
+  flex-shrink:0;
+  height:100%;
+  padding:16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border-right: 1px solid var(--stroke);
+  color: var(--text);
+}
+
+.center{
+  flex:1;
+  height:100vh;
+  overflow-y:auto;
+  padding:18px 18px 28px;
+  background: transparent;
+}
+
+/* красивый скролл */
+.center::-webkit-scrollbar{ width:10px; }
+.center::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.14);
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0);
+  background-clip: padding-box;
+}
+.center::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.22); }
+
+/* ====== Sticky header ====== */
+.sticky{
+  position: sticky;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 50;
+  padding: 14px 0;
+  background: linear-gradient(180deg, rgba(7,7,10,.96), rgba(7,7,10,.70));
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* Заголовок */
+#zagalovok{
+  color: var(--accent);
+  text-shadow:
+    0 0 10px rgba(255,212,0,.35),
+    0 0 22px rgba(255,212,0,.18);
+  background: transparent;
+  border-radius: 8px;
+  display:inline-block;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+  font-weight: 800;
+}
+
+/* Поиск — убираем фиксированные ширины */
+#poisk{
+  margin: 0;
+  width: min(980px, 100%);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 8px 22px rgba(0,0,0,.25);
+}
+#poisk::placeholder{
+  color: rgba(241,241,255,.45);
+}
+#poisk:focus{
+  border-color: rgba(255,212,0,.35);
+  box-shadow: 0 0 0 3px rgba(255,212,0,.12), 0 8px 22px rgba(0,0,0,.25);
+}
+
+/* ====== Small UI ====== */
+.play{ margin-top: 18px; }
+
+.avatar{
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%),
+    linear-gradient(135deg, rgba(255,212,0,.9), rgba(255,92,138,.8));
+  margin-left: auto;
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.16);
+}
+
+/* ====== Modal ====== */
+#modal-cart{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index:999;
+  width: min(900px, 92vw);
+  height: min(900px, 88vh);
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+  padding: 16px;
+}
+
+.pr{
+  margin: 0;
+  text-align:center;
+  font-weight:800;
+  color: var(--text);
+}
+
+#krest{
+  width: 24px;
+  height: 24px; /* было 23x (ошибка) */
+  margin-left: auto;
+  display:block;
+  cursor:pointer;
+  opacity:.85;
+}
+#krest:hover{ opacity:1; }
+
+/* ====== Music cards ====== */
+.muz{
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.28);
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+  margin: 12px 0;
+}
+.muz:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,212,0,.22);
+  background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+}
+
+.title{
+  padding-left: 0;     /* убираем “47%” */
+  text-align: left;
+  margin: 0 0 10px 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* Кнопка избранного — аккуратно в правом верхнем углу карточки */
+.muz-fav-btn{
+  position:absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  display:grid;
+  place-items:center;
+
+  background: rgba(0,0,0,.25);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.70);
+  border-radius: 14px;
+
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease, color .12s ease, border-color .12s ease;
+  padding: 0;
+  margin: 0;          /* убираем странные margin/right */
+}
+.muz-fav-btn:hover{
+  background: rgba(255,212,0,.12);
+  border-color: rgba(255,212,0,.25);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+.muz-fav-btn.active{
+  background: rgba(255,92,138,.14);
+  border-color: rgba(255,92,138,.30);
+  color: var(--accent2);
+}
+
+/* ====== Audio player ====== */
+.muz-audio{
+  width:100%;
+  height: 44px;
+  margin-top: 10px;
+  outline:none;
+  border-radius: 14px;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+}
+
+/* WebKit controls */
+.muz-audio::-webkit-media-controls-panel{
+  background: linear-gradient(135deg, rgba(25,25,35,.95), rgba(18,18,26,.95));
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 8px;
+}
+
+.muz-audio::-webkit-media-controls-play-button{
+  background-color: var(--accent);
+  border-radius: 50%;
+  transition: transform .12s ease, box-shadow .12s ease;
+  width: 34px;
+  height: 34px;
+}
+.muz-audio::-webkit-media-controls-play-button:hover{
+  transform: scale(1.06);
+  box-shadow: 0 0 0 4px rgba(255,212,0,.18);
+}
+
+/* timeline */
+.muz-audio::-webkit-media-controls-timeline{
+  background: rgba(255,255,255,.10);
+  border-radius: 999px;
+  height: 4px;
+  margin: 0 10px;
+}
+.muz-audio::-webkit-slider-thumb{
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+/* time */
+.muz-audio::-webkit-media-controls-current-time-display,
+.muz-audio::-webkit-media-controls-time-remaining-display{
+  color: rgba(241,241,255,.85);
+  font-size: 12px;
+  text-shadow: 0 0 8px rgba(0,0,0,.35);
+  margin: 0 6px;
+}
+
+/* volume */
+.muz-audio::-webkit-media-controls-volume-slider-container,
+.muz-audio::-webkit-media-controls-volume-slider{
+  background: rgba(255,255,255,.10);
+  border-radius: 999px;
+  height: 4px;
+}
+.muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb{
+  background: var(--accent);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor:pointer;
+}
+.muz-audio::-webkit-media-controls-mute-button{
+  background-color: transparent;
+  border-radius: 12px;
+  transition: background .12s ease;
+  padding: 6px;
+}
+.muz-audio::-webkit-media-controls-mute-button:hover{
+  background-color: rgba(255,255,255,.10);
+}
+
+/* Firefox */
+.muz-audio::-moz-range-track{
+  background: rgba(255,255,255,.10);
+  border-radius: 999px;
+  height: 4px;
+}
+.muz-audio::-moz-range-thumb{
+  background: var(--accent);
+  border: none;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+}
+
+/* ====== Follow button ====== */
+.folow{
+  margin-top: 18px;
+  padding: 8px 12px;
+  height: auto;
+  width: fit-content;
+
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(255,92,138,.85), rgba(255,212,0,.65));
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+/* ====== Errors ====== */
+#er{
+  display:none;
+  margin: 100px auto 0;
+  width: fit-content;
+  color: rgba(241,241,255,.9);
+  padding: 12px 14px;
+  background: rgba(255,92,138,.10);
+  border: 1px solid rgba(255,92,138,.22);
+  border-radius: 14px;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 900px){
+  .sidebar{ display:none; }         /* если нужно — можно оставить */
+  .center{ padding: 14px; }
+  #poisk{ width: 100%; }
+  .muz{ padding-right: 56px; }      /* место под fav кнопку */
+}
