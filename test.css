@@ -1,113 +1,96 @@
 /* =========================
-   MIP Media Player — Premium UI
-   Works with your HTML as-is
+   MIP — Dark Rounded Premium (bigger desktop)
+   Your HTML supported as-is
    ========================= */
 
-/* ---- Theme ---- */
 :root{
-  --bg0:#070914;
-  --bg1:#0b1024;
+  /* Dark theme */
+  --bg0:#05060a;
+  --bg1:#070915;
 
   --glass: rgba(255,255,255,.06);
   --glass2: rgba(255,255,255,.085);
-  --stroke: rgba(255,255,255,.12);
+  --stroke: rgba(255,255,255,.10);
 
-  --text:#eef0ff;
-  --muted: rgba(238,240,255,.70);
-  --muted2: rgba(238,240,255,.52);
+  --text:#f2f4ff;
+  --muted: rgba(242,244,255,.70);
 
-  --accent:#7c5cff;   /* violet */
-  --accent2:#21d4fd;  /* cyan */
-  --good:#2ee59d;
-  --warn:#ffd400;
+  --accent:#8b5cff;  /* violet */
+  --accent2:#25d7ff; /* cyan */
+  --gold:#ffd400;
 
-  --r14:14px;
-  --r18:18px;
-  --r22:22px;
-  --r28:28px;
+  /* SUPER rounded */
+  --rPill: 999px;
+  --rBig: 34px;
+  --rHuge: 44px;
 
-  --sh1: 0 22px 60px rgba(0,0,0,.55);
-  --sh2: 0 14px 34px rgba(0,0,0,.42);
-  --sh3: 0  8px 18px rgba(0,0,0,.30);
+  /* Shadows */
+  --sh1: 0 26px 70px rgba(0,0,0,.62);
+  --sh2: 0 16px 40px rgba(0,0,0,.50);
+  --sh3: 0 10px 24px rgba(0,0,0,.36);
 
-  --ease: cubic-bezier(.2,.8,.2,1);
+  /* Smooth motion */
+  --ease: cubic-bezier(.2,.85,.2,1);
   --t1: 140ms var(--ease);
-  --t2: 240ms var(--ease);
+  --t2: 260ms var(--ease);
+
+  /* Bigger UI baseline */
+  --fs: 16px;
 }
 
-/* ---- Base reset ---- */
 *{ box-sizing:border-box; }
 html, body{ height:100%; }
 
 body{
   margin:0;
   height:100vh;
-  overflow:hidden; /* scroll only inside .center */
+  overflow:hidden;
   color:var(--text);
-  font: 500 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  font: 600 var(--fs)/1.45 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
 
   background:
-    radial-gradient(1200px 700px at 18% -10%, rgba(124,92,255,.28), transparent 55%),
-    radial-gradient(900px 650px at 92% 10%, rgba(33,212,253,.20), transparent 55%),
-    radial-gradient(900px 650px at 50% 120%, rgba(46,229,157,.10), transparent 60%),
+    radial-gradient(1200px 760px at 18% -10%, rgba(139,92,255,.18), transparent 60%),
+    radial-gradient(1000px 760px at 92% 10%, rgba(37,215,255,.12), transparent 60%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-::selection{ background: rgba(124,92,255,.28); }
+::selection{ background: rgba(139,92,255,.28); }
 a{ color:inherit; text-decoration:none; }
 a:hover{ text-decoration: underline; }
 
-input, button{
-  font: inherit;
-}
-
-/* Focus (keyboard friendly) */
+input, button{ font: inherit; }
 :focus-visible{
-  outline: none;
-  box-shadow:
-    0 0 0 3px rgba(124,92,255,.18),
-    0 0 0 1px rgba(124,92,255,.35);
-  border-radius: 12px;
-}
-
-/* ---- Subtle ambient glow animation ---- */
-@keyframes ambient{
-  0%   { filter: hue-rotate(0deg); }
-  50%  { filter: hue-rotate(10deg); }
-  100% { filter: hue-rotate(0deg); }
-}
-@media (prefers-reduced-motion: no-preference){
-  body{ animation: ambient 10s linear infinite; }
+  outline:none;
+  box-shadow: 0 0 0 4px rgba(139,92,255,.18), 0 0 0 1px rgba(139,92,255,.40);
+  border-radius: 18px;
 }
 
 /* =========================
-   Top search (sticky)
+   TOP SEARCH (sticky)
    ========================= */
 #poisk{
   position: sticky;
   top: 0;
   z-index: 100;
 
-  width: min(1000px, calc(100% - 28px));
-  margin: 14px auto 0;
+  width: min(1180px, calc(100% - 40px));
+  margin: 18px auto 0;
   display:block;
 
-  padding: 12px 14px;
-  border-radius: 999px;
+  padding: 16px 18px;
+  border-radius: var(--rPill);
 
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
   color: var(--text);
 
   box-shadow: var(--sh3);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(18px);
 
   transition: transform var(--t2), border-color var(--t2), background var(--t2), box-shadow var(--t2);
 }
 
-#poisk::placeholder{
-  color: rgba(238,240,255,.48);
-}
+#poisk::placeholder{ color: rgba(242,244,255,.42); }
 
 #poisk:hover{
   background: rgba(255,255,255,.075);
@@ -115,78 +98,66 @@ input, button{
 }
 
 #poisk:focus{
-  border-color: rgba(124,92,255,.42);
-  box-shadow:
-    0 0 0 3px rgba(124,92,255,.14),
-    var(--sh2);
+  border-color: rgba(37,215,255,.30);
+  box-shadow: 0 0 0 4px rgba(37,215,255,.12), var(--sh2);
   transform: translateY(-1px);
 }
 
-/* little “search icon” hint via shadow */
-#poisk{
-  background-image:
-    radial-gradient(14px 14px at 18px 50%, rgba(33,212,253,.16), transparent 60%);
-  padding-left: 14px; /* keep simple (no actual icon) */
-}
-
 /* =========================
-   Main layout
+   LAYOUT
    ========================= */
 .container{
   display:flex;
-  height: calc(100vh - 66px);
-  width: min(1300px, calc(100% - 28px));
-  margin: 12px auto 14px;
-  gap: 14px;
+  height: calc(100vh - 78px);
+  width: min(1440px, calc(100% - 40px));
+  margin: 14px auto 18px;
+  gap: 16px;
 }
 
-/* Both sidebars share same class in your HTML */
+/* Sidebars (both left & right) */
 .sidebar{
-  width: 270px;
+  width: 310px;
   flex-shrink:0;
   height: 100%;
-  padding: 16px;
+  padding: 18px;
 
-  border-radius: var(--r28);
+  border-radius: var(--rHuge);
   background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.045));
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--sh2);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 
   position: relative;
   overflow: hidden;
 }
 
-/* Nice highlight in sidebar */
 .sidebar::before{
   content:"";
   position:absolute;
   inset:-2px;
   background:
-    radial-gradient(420px 240px at 20% 10%, rgba(124,92,255,.18), transparent 60%),
-    radial-gradient(420px 240px at 90% 35%, rgba(33,212,253,.14), transparent 60%);
+    radial-gradient(520px 280px at 20% 10%, rgba(139,92,255,.16), transparent 60%),
+    radial-gradient(520px 280px at 90% 35%, rgba(37,215,255,.12), transparent 60%);
   pointer-events:none;
   opacity:.9;
 }
 
-/* Center scroll area */
+/* Center area */
 .center{
   flex:1;
   height: 100%;
-  overflow-y: auto;
-  padding: 14px;
+  overflow-y:auto;
+  padding: 16px;
 
-  border-radius: var(--r28);
+  border-radius: var(--rHuge);
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.035));
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--sh2);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 
-  position: relative;
-  overflow-x: hidden;
+  overflow-x:hidden;
 }
 
-/* Pretty scrollbar */
 .center::-webkit-scrollbar{ width: 10px; }
 .center::-webkit-scrollbar-thumb{
   background: rgba(255,255,255,.14);
@@ -197,62 +168,61 @@ input, button{
 .center::-webkit-scrollbar-thumb:hover{ background: rgba(255,255,255,.22); }
 
 /* =========================
-   Branding + nav
+   BRAND / NAV
    ========================= */
 #zagalovok{
-  margin: 0 0 14px 0;
+  margin: 2px 0 18px 0;
   display:inline-block;
 
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: .3px;
+  font-size: 22px;     /* bigger on PC */
+  font-weight: 950;
+  letter-spacing: .2px;
 
-  color: rgba(238,240,255,.96);
+  color: rgba(242,244,255,.96);
   text-shadow:
-    0 0 18px rgba(124,92,255,.30),
-    0 0 26px rgba(33,212,253,.18);
+    0 0 24px rgba(139,92,255,.22),
+    0 0 30px rgba(37,215,255,.14);
 }
 
-/* Sidebar buttons */
+/* Big pill nav buttons */
 .folow{
   user-select:none;
-  margin-top: 10px;
-  padding: 11px 12px;
-  border-radius: 16px;
+  margin-top: 12px;
+  padding: 14px 14px;
+  border-radius: 26px;
 
   background: rgba(255,255,255,.06);
   border: 1px solid rgba(255,255,255,.10);
-  color: rgba(238,240,255,.92);
+  color: rgba(242,244,255,.92);
 
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: .2px;
+  font-size: 16px;
 
   display:flex;
   align-items:center;
-  justify-content: center;
+  justify-content:center;
 
   transition: transform var(--t1), background var(--t1), border-color var(--t1), box-shadow var(--t1);
 }
 .folow:hover{
   background: rgba(255,255,255,.09);
-  border-color: rgba(124,92,255,.26);
+  border-color: rgba(139,92,255,.26);
   transform: translateY(-1px);
-  box-shadow: 0 0 0 3px rgba(124,92,255,.10);
+  box-shadow: 0 0 0 4px rgba(139,92,255,.10);
 }
-.folow:active{
-  transform: translateY(0);
-}
+.folow:active{ transform: translateY(0); }
 
-/* Right sidebar controls */
+/* Avatar */
 .avatar{
-  width: 52px;
-  height: 52px;
-  border-radius: 999px;
-  margin: 4px auto 0;
+  width: 62px;
+  height: 62px;
+  border-radius: var(--rPill);
+  margin: 6px auto 0;
 
   background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 44%),
-    linear-gradient(135deg, rgba(124,92,255,.95), rgba(33,212,253,.80));
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.26), transparent 44%),
+    linear-gradient(135deg, rgba(139,92,255,.95), rgba(37,215,255,.75));
   border: 1px solid rgba(255,255,255,.16);
   box-shadow: var(--sh3);
 
@@ -261,21 +231,22 @@ input, button{
 }
 .avatar:hover{
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 0 0 4px rgba(33,212,253,.12), var(--sh2);
+  box-shadow: 0 0 0 5px rgba(37,215,255,.10), var(--sh2);
 }
 .avatar:active{ transform: translateY(0) scale(1.00); }
 
+/* Fullscreen button */
 .sidebar button{
   width: 100%;
-  margin-top: 14px;
-  padding: 11px 12px;
+  margin-top: 16px;
+  padding: 14px 14px;
 
-  border-radius: 16px;
+  border-radius: 26px;
   border: 1px solid rgba(255,255,255,.12);
-  background: linear-gradient(135deg, rgba(124,92,255,.85), rgba(33,212,253,.75));
+  background: linear-gradient(135deg, rgba(139,92,255,.86), rgba(37,215,255,.72));
   color: rgba(10,12,18,.95);
 
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: .2px;
 
   box-shadow: var(--sh3);
@@ -290,128 +261,123 @@ input, button{
 .sidebar button:active{ transform: translateY(0); }
 
 /* =========================
-   Tracks (cards)
+   TRACK CARDS
    ========================= */
 .muz{
   position: relative;
-  padding: 14px 14px 12px;
-  margin: 12px 0;
+  padding: 16px 16px 14px;
+  margin: 14px 0;
 
-  border-radius: var(--r24);
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.045));
+  border-radius: var(--rHuge);
+  background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--sh3);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(16px);
 
   overflow: hidden;
-
-  transition: transform var(--t1), border-color var(--t1), box-shadow var(--t1), background var(--t1);
+  transition: transform var(--t1), border-color var(--t1), box-shadow var(--t1);
 }
 
-/* Gradient shine */
 .muz::before{
   content:"";
   position:absolute;
   inset:-2px;
   background:
-    radial-gradient(520px 240px at 15% 0%, rgba(124,92,255,.16), transparent 60%),
-    radial-gradient(520px 240px at 85% 0%, rgba(33,212,253,.12), transparent 60%);
+    radial-gradient(680px 300px at 12% 0%, rgba(139,92,255,.14), transparent 60%),
+    radial-gradient(680px 300px at 88% 0%, rgba(37,215,255,.10), transparent 60%);
   opacity:.9;
   pointer-events:none;
 }
 
 .muz:hover{
   transform: translateY(-2px);
-  border-color: rgba(124,92,255,.24);
+  border-color: rgba(139,92,255,.22);
   box-shadow: var(--sh2);
 }
 
-/* Title */
+/* Bigger title */
 .title{
-  margin: 0 56px 10px 0; /* reserve for fav button */
-  padding:0;
-  text-align:left;
-
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: .2px;
-  color: rgba(238,240,255,.96);
+  margin: 0 64px 12px 0;
+  font-size: 18px;
+  font-weight: 950;
+  letter-spacing: .15px;
+  color: rgba(242,244,255,.96);
 }
 
-/* Fav button (heart) */
+/* Fav button (super rounded) */
 .muz-fav-btn{
   position:absolute;
-  top: 10px;
-  right: 10px;
+  top: 12px;
+  right: 12px;
 
-  width: 42px;
-  height: 42px;
+  width: 54px;
+  height: 54px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+
+  color: rgba(242,244,255,.80);
+  cursor:pointer;
+
   display:grid;
   place-items:center;
 
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
-
-  background: rgba(0,0,0,.18);
-  color: rgba(238,240,255,.78);
-
-  cursor:pointer;
   transition: transform var(--t1), background var(--t1), border-color var(--t1), box-shadow var(--t1), color var(--t1);
 }
 
 .muz-fav-btn:hover{
-  transform: translateY(-1px);
-  background: rgba(124,92,255,.14);
-  border-color: rgba(124,92,255,.28);
-  box-shadow: 0 0 0 3px rgba(124,92,255,.10);
-  color: rgba(238,240,255,.95);
+  transform: translateY(-1px) scale(1.03);
+  background: rgba(139,92,255,.16);
+  border-color: rgba(139,92,255,.30);
+  box-shadow: 0 0 0 5px rgba(139,92,255,.10);
+  color: rgba(242,244,255,.98);
 }
 
-/* If your JS toggles .active */
 .muz-fav-btn.active{
   background: rgba(255,212,0,.16);
   border-color: rgba(255,212,0,.32);
-  color: var(--warn);
-  box-shadow: 0 0 0 3px rgba(255,212,0,.10);
+  color: var(--gold);
+  box-shadow: 0 0 0 5px rgba(255,212,0,.10);
 }
 
-/* Tiny pulse on active */
+/* Smooth pulse for active */
 @keyframes pulse{
   0%{ box-shadow: 0 0 0 0 rgba(255,212,0,.18); }
-  100%{ box-shadow: 0 0 0 10px rgba(255,212,0,0); }
+  100%{ box-shadow: 0 0 0 14px rgba(255,212,0,0); }
 }
 @media (prefers-reduced-motion: no-preference){
-  .muz-fav-btn.active{ animation: pulse 1.2s var(--ease) infinite; }
+  .muz-fav-btn.active{ animation: pulse 1.25s var(--ease) infinite; }
 }
 
-/* Audio */
+/* Audio (rounded + bigger) */
 .muz-audio{
   width: 100%;
-  height: 46px;
-  margin-top: 8px;
-  border-radius: 16px;
+  height: 54px;             /* bigger */
+  margin-top: 10px;
+  border-radius: 22px;
   outline: none;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
+  filter: drop-shadow(0 12px 22px rgba(0,0,0,.32));
 }
 
-/* WebKit media controls polish */
+/* WebKit controls */
 .muz-audio::-webkit-media-controls-panel{
-  background: linear-gradient(135deg, rgba(18,20,34,.95), rgba(12,12,18,.95));
-  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(16,18,28,.96), rgba(10,10,16,.96));
+  border-radius: 22px;
   border: 1px solid rgba(255,255,255,.12);
   padding: 8px;
 }
 
 .muz-audio::-webkit-media-controls-play-button{
-  background-color: rgba(124,92,255,.95);
+  background-color: rgba(139,92,255,.96);
   border-radius: 50%;
   transition: transform var(--t1), box-shadow var(--t1);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
 }
 .muz-audio::-webkit-media-controls-play-button:hover{
   transform: scale(1.06);
-  box-shadow: 0 0 0 4px rgba(124,92,255,.16);
+  box-shadow: 0 0 0 5px rgba(139,92,255,.16);
 }
 
 .muz-audio::-webkit-media-controls-timeline{
@@ -423,7 +389,7 @@ input, button{
 
 .muz-audio::-webkit-media-controls-current-time-display,
 .muz-audio::-webkit-media-controls-time-remaining-display{
-  color: rgba(238,240,255,.86);
+  color: rgba(242,244,255,.86);
   font-size: 12px;
   text-shadow: 0 0 10px rgba(0,0,0,.35);
   margin: 0 6px;
@@ -431,7 +397,7 @@ input, button{
 
 .muz-audio::-webkit-media-controls-mute-button{
   background-color: transparent;
-  border-radius: 12px;
+  border-radius: 14px;
   transition: background var(--t1);
   padding: 6px;
 }
@@ -448,7 +414,7 @@ input, button{
 
 .muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb,
 .muz-audio::-webkit-slider-thumb{
-  background: linear-gradient(135deg, rgba(124,92,255,1), rgba(33,212,253,1));
+  background: linear-gradient(135deg, rgba(139,92,255,1), rgba(37,215,255,1));
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -456,27 +422,12 @@ input, button{
   border:none;
 }
 
-/* Firefox */
-.muz-audio::-moz-range-track{
-  background: rgba(255,255,255,.10);
-  border-radius: 999px;
-  height: 4px;
-}
-.muz-audio::-moz-range-thumb{
-  background: linear-gradient(135deg, rgba(124,92,255,1), rgba(33,212,253,1));
-  border: none;
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-}
-
-/* Optional wave under audio (you have .muz-wave div) */
+/* Wave bar (smooth & rounded) */
 .muz-wave{
-  margin-top: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.08);
+  margin-top: 12px;
+  height: 12px;
+  border-radius: var(--rPill);
+  background: rgba(255,255,255,.07);
   border: 1px solid rgba(255,255,255,.10);
   overflow:hidden;
   position: relative;
@@ -485,12 +436,12 @@ input, button{
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(90deg, transparent, rgba(124,92,255,.35), rgba(33,212,253,.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(139,92,255,.35), rgba(37,215,255,.24), transparent);
   transform: translateX(-60%);
 }
 @media (prefers-reduced-motion: no-preference){
   .muz:hover .muz-wave::before{
-    animation: waveMove 1.2s var(--ease) infinite;
+    animation: waveMove 1.25s var(--ease) infinite;
   }
 }
 @keyframes waveMove{
@@ -498,25 +449,22 @@ input, button{
   100%{ transform: translateX(60%); }
 }
 
-/* =========================
-   Empty state (#er)
-   ========================= */
+/* Empty state */
 #er{
-  display:none; /* you toggle in JS */
+  display:none;
   margin: 14px auto 18px;
-  padding: 12px 14px;
+  padding: 12px 16px;
   width: fit-content;
-  text-align:center;
 
-  color: rgba(238,240,255,.90);
+  color: rgba(242,244,255,.90);
   background: rgba(255,212,0,.10);
   border: 1px solid rgba(255,212,0,.22);
-  border-radius: 999px;
+  border-radius: var(--rPill);
   box-shadow: var(--sh3);
 }
 
 /* =========================
-   Modal (profile)
+   Modal (profile) — dark + super rounded
    ========================= */
 #modal-cart{
   display:none;
@@ -526,42 +474,30 @@ input, button{
   padding: 18px;
 }
 
-/* overlay */
+/* Overlay */
 #modal-cart::before{
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(0,0,0,.62);
-  backdrop-filter: blur(16px);
+  background: rgba(0,0,0,.68);
+  backdrop-filter: blur(18px);
 }
 
-/* when you set display:block in JS — we turn it into grid automatically */
+/* When JS sets display:block */
 #modal-cart[style*="display: block"],
 #modal-cart[style*="display:block"]{
   display:grid !important;
   place-items:center;
 }
 
-/* style the modal content itself (your #modal-cart holds content directly) */
-#modal-cart{
-  /* the panel is the first “layer” by styling a pseudo wrapper via backdrop */
-}
-#modal-cart > *{
-  position: relative;
-  z-index: 1;
-}
-
-/* make the content area look like a card */
-#modal-cart{
-  /* We'll create a panel using a second pseudo-layer */
-}
+/* Panel */
 #modal-cart::after{
   content:"";
   position:absolute;
   z-index: 0;
   width: min(920px, 94vw);
   height: min(820px, 88vh);
-  border-radius: var(--r28);
+  border-radius: var(--rHuge);
 
   background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
   border: 1px solid rgba(255,255,255,.14);
@@ -569,68 +505,61 @@ input, button{
   backdrop-filter: blur(18px);
 }
 
-/* place modal children over the panel */
-#modal-cart img#krest,
-#modal-cart .pr,
-#modal-cart a,
-#modal-cart p{
+/* Put children above panel */
+#modal-cart > *{
+  position: relative;
+  z-index: 1;
   width: min(920px, 94vw);
-  max-width: min(920px, 94vw);
 }
 
-/* close button */
+/* Close icon */
 #krest{
-  margin-top: 14px;
-  margin-left: auto;
-  margin-right: 18px;
+  width: 30px;
+  height: 30px;
+  margin: 14px 18px 0 auto;
+  display:block;
 
-  width: 28px;
-  height: 28px;
-
-  opacity: .85;
+  opacity:.86;
   cursor:pointer;
-  transition: transform var(--t1), opacity var(--t1), filter var(--t1);
-  filter: drop-shadow(0 10px 16px rgba(0,0,0,.35));
+  filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));
+  transition: transform var(--t1), opacity var(--t1);
 }
-#krest:hover{
-  opacity: 1;
-  transform: scale(1.06);
-}
+#krest:hover{ opacity:1; transform: scale(1.06); }
 
-/* modal typography */
 .pr{
   margin: 14px 0 6px;
   text-align:center;
   font-weight: 950;
   letter-spacing: .2px;
-  color: rgba(238,240,255,.96);
-  text-shadow: 0 0 18px rgba(124,92,255,.18);
+  font-size: 22px;
+  color: rgba(242,244,255,.96);
+  text-shadow: 0 0 22px rgba(139,92,255,.18);
 }
 
-/* modal link look */
 #modal-cart a{
   display:block;
   text-align:center;
   margin-top: 10px;
-  color: rgba(238,240,255,.92);
+  color: rgba(242,244,255,.92);
 }
 #modal-cart a:hover{
-  color: rgba(33,212,253,.95);
+  color: rgba(37,215,255,.95);
 }
 
 /* =========================
    Responsive
    ========================= */
-@media (max-width: 980px){
+@media (max-width: 1100px){
   .container{
-    width: calc(100% - 20px);
-    gap: 12px;
+    width: calc(100% - 28px);
   }
-  .sidebar{ width: 240px; }
+  .sidebar{
+    width: 280px;
+  }
 }
 
-@media (max-width: 860px){
-  body{ overflow:auto; } /* phone: allow page scroll */
+@media (max-width: 900px){
+  body{ overflow:auto; }
   .container{
     flex-direction: column;
     height: auto;
@@ -638,25 +567,17 @@ input, button{
   .sidebar{
     width: 100%;
     height: auto;
+    border-radius: var(--rBig);
   }
   .center{
-    height: 70vh; /* keeps the “app” feel */
+    height: 72vh;
+    border-radius: var(--rBig);
   }
   #poisk{
-    width: calc(100% - 20px);
+    width: calc(100% - 28px);
   }
 }
 
-@media (max-width: 420px){
-  #zagalovok{ font-size: 16px; }
-  .title{ font-size: 14px; }
-  .muz-fav-btn{ width: 40px; height: 40px; border-radius: 14px; }
-  .muz-audio{ height: 52px; }
-}
-
-/* =========================
-   Reduce motion
-   ========================= */
 @media (prefers-reduced-motion: reduce){
   *{ transition: none !important; animation: none !important; }
 }
