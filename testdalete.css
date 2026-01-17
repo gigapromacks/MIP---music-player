@@ -1,0 +1,164 @@
+/* =========================
+   EVEN UGLIER MODE (MAX)
+   ========================= */
+
+/* gigantic terrible cursor */
+*{
+  cursor: crosshair !important;
+}
+
+/* everything shakes slightly */
+@keyframes jitter{
+  0%{ transform: translate(0,0) rotate(0deg) skewX(0deg); }
+  25%{ transform: translate(2px,-1px) rotate(1deg) skewX(4deg); }
+  50%{ transform: translate(-2px,2px) rotate(-1deg) skewX(-4deg); }
+  75%{ transform: translate(1px,1px) rotate(1.5deg) skewX(6deg); }
+  100%{ transform: translate(0,0) rotate(0deg) skewX(0deg); }
+}
+
+body{
+  background:
+    repeating-linear-gradient(90deg, #ff00ff 0 8px, #00ff00 8px 16px),
+    repeating-linear-gradient(0deg, #00ffff 0 10px, #ffff00 10px 20px) !important;
+  animation: jitter 0.35s infinite !important;
+}
+
+/* Break the layout a bit */
+.container{
+  transform: skewY(1.2deg) !important;
+  filter: saturate(2.6) contrast(1.5) !important;
+}
+
+.sidebar{
+  transform: rotate(-2deg) !important;
+  border-right: 18px dashed #0000ff !important;
+  background: linear-gradient(45deg, #00ff00, #ff00ff) !important;
+}
+
+.center{
+  transform: rotate(1deg) !important;
+  background: repeating-radial-gradient(circle at 40% 40%, #fff 0 12px, #000 12px 24px) !important;
+}
+
+/* sticky looks like warning banner */
+.sticky{
+  background: repeating-linear-gradient(45deg, #ff0000 0 12px, #ffff00 12px 24px) !important;
+  border-bottom: 20px groove #00ffff !important;
+  animation: jitter 0.22s infinite !important;
+}
+
+/* title = ransom note */
+#zagalovok{
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  background: #000 !important;
+  color: #00ff00 !important;
+  border: 10px ridge #ff00ff !important;
+  padding: 10px 14px !important;
+  transform: rotate(-6deg) !important;
+  box-shadow: 0 0 0 8px #ffff00, 0 0 0 16px #00ffff !important;
+}
+
+/* search = painful */
+#poisk{
+  border-radius: 0 !important;
+  border: 12px inset #ff0000 !important;
+  background: #00ffff !important;
+  color: #ff00ff !important;
+  font-size: 20px !important;
+  text-shadow: 2px 2px 0 #000 !important;
+}
+
+/* every track has watermark */
+.muz{
+  position: relative !important;
+  transform: rotate(.9deg) !important;
+  border-radius: 0 !important;
+  outline: 10px dotted #ff00ff !important;
+  border: 14px double #000 !important;
+  background:
+    repeating-linear-gradient(135deg, #ffff00 0 10px, #00ff00 10px 20px, #00ffff 20px 30px) !important;
+  animation: jitter 0.28s infinite !important;
+}
+
+.muz::after{
+  content: "FREE MP3 DOWNLOAD!!!" !important;
+  position: absolute !important;
+  left: 10px !important;
+  bottom: 8px !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: #ff0000 !important;
+  background: #ffff00 !important;
+  border: 6px solid #0000ff !important;
+  padding: 4px 8px !important;
+  transform: rotate(-3deg) !important;
+  opacity: .95 !important;
+}
+
+/* title in card = too big and centered */
+.title{
+  text-align: center !important;
+  font-size: 26px !important;
+  background: #ff00ff !important;
+  color: #00ffff !important;
+  border: 8px dashed #000 !important;
+}
+
+/* fav button = obnoxious */
+.muz-fav-btn{
+  width: 78px !important;
+  height: 78px !important;
+  font-size: 34px !important;
+  border-radius: 0 !important;
+  background: #ff0000 !important;
+  border: 12px outset #ffff00 !important;
+  animation: jitter 0.20s infinite !important;
+}
+
+/* audio = thick border + weird filter */
+.muz-audio{
+  height: 80px !important;
+  border-radius: 0 !important;
+  border: 14px solid #000 !important;
+  filter: hue-rotate(230deg) contrast(1.8) saturate(3) !important;
+}
+
+/* follow = screaming */
+.folow{
+  font-size: 20px !important;
+  background: #00ff00 !important;
+  color: #ff00ff !important;
+  border: 12px groove #0000ff !important;
+  border-radius: 0 !important;
+  transform: rotate(7deg) !important;
+  animation: jitter 0.3s infinite !important;
+}
+
+/* error = mega */
+#er{
+  font-size: 28px !important;
+  border: 16px ridge #ff0000 !important;
+  background: #00ffff !important;
+  color: #000 !important;
+}
+
+/* modal = nightmare */
+#modal-cart{
+  background: repeating-linear-gradient(90deg, #ff00ff 0 10px, #000 10px 20px) !important;
+  border: 22px double #ffff00 !important;
+  box-shadow: 0 0 0 14px #00ffff, 0 0 0 28px #00ff00 !important;
+  animation: jitter 0.22s infinite !important;
+}
+#krest{
+  width: 48px !important;
+  height: 48px !important;
+  background: #ffff00 !important;
+  border: 10px solid #000 !important;
+}
+
+/* EXTRA: chaotic rainbow invert on hover */
+.muz:hover, .sticky:hover, #poisk:hover, .muz-fav-btn:hover{
+  filter: invert(1) hue-rotate(120deg) !important;
+}
