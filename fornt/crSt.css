@@ -1,0 +1,390 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(40, 40, 40, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 85% 30%, rgba(40, 40, 40, 0.1) 0%, transparent 20%);
+    overflow-x: hidden;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 50, 100, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 50, 100, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 50, 100, 0); }
+}
+
+@keyframes glow {
+    0% { border-color: rgba(255, 50, 100, 0.5); }
+    50% { border-color: rgba(255, 50, 100, 0.8); }
+    100% { border-color: rgba(255, 50, 100, 0.5); }
+}
+
+/* Контейнер */
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Заголовок */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    font-size: 2.8rem;
+    color: #ff3264;
+    background: linear-gradient(135deg, #ff3264, #ff6b9d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(255, 50, 100, 0.4));
+}
+
+.logo-text {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #e0e0e0, #b0b0b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-title {
+    margin-top: 10px;
+}
+
+.header-title h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #f0f0f0;
+    margin-bottom: 8px;
+}
+
+.header-title p {
+    font-size: 1rem;
+    color: #a0a0a0;
+    line-height: 1.5;
+    max-width: 400px;
+}
+
+/* Форма */
+#productForm {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    padding: 40px 35px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 50, 100, 0.1);
+}
+
+#productForm:hover {
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 50, 100, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Поля ввода */
+#productForm input {
+    width: 100%;
+    padding: 18px 20px;
+    background-color: #252525;
+    border: 2px solid #333333;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #f0f0f0;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#productForm input::placeholder {
+    color: #777777;
+}
+
+#productForm input:focus {
+    border-color: #ff3264;
+    background-color: #2a2a2a;
+    box-shadow: 0 0 0 3px rgba(255, 50, 100, 0.1);
+}
+
+#productForm input:hover {
+    border-color: #444444;
+}
+
+/* Специальные стили для файлового поля */
+#file {
+    padding: 16px 20px;
+    background-color: #2a2a2a;
+    border: 2px dashed #444444;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#file:hover {
+    border-color: #ff3264;
+    background-color: #2f2f2f;
+    animation: glow 2s infinite;
+}
+
+#file::before {
+    content: "📁 Выберите аудиофайл";
+    color: #a0a0a0;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+#file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#file::after {
+    content: "или перетащите файл сюда";
+    color: #777777;
+    font-size: 0.85rem;
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Кнопка */
+#productForm button {
+    background: linear-gradient(135deg, #ff3264, #ff6b9d);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+#productForm button:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+        0 7px 20px rgba(255, 50, 100, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+#productForm button:active {
+    transform: translateY(0);
+}
+
+#productForm button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.7s;
+}
+
+#productForm button:hover:after {
+    left: 100%;
+}
+
+/* Декоративные элементы */
+.decorative-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.decorative-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.03;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #ff3264, #6b5bff);
+    top: -150px;
+    right: -100px;
+}
+
+.circle-2 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #6b5bff, #32ff7e);
+    bottom: -80px;
+    left: -80px;
+}
+
+/* Уведомление об ошибке */
+.error-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff3b30;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(255, 59, 48, 0.3);
+    display: none;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Подсказки */
+.form-hint {
+    font-size: 0.85rem;
+    color: #777777;
+    margin-top: -20px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+    
+    #productForm {
+        padding: 30px 25px;
+    }
+    
+    .logo {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .logo-text {
+        font-size: 1.8rem;
+    }
+    
+    .logo-icon {
+        font-size: 2.4rem;
+    }
+    
+    .header-title h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    #productForm {
+        padding: 25px 20px;
+    }
+    
+    #productForm input {
+        padding: 15px 18px;
+    }
+    
+    #productForm button {
+        padding: 18px;
+    }
+}
+
+/* Стили для состояния загрузки */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.loading:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Стили для успешной отправки */
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1001;
+    display: none;
+    border: 1px solid rgba(50, 255, 126, 0.2);
+}
+
+.success-message i {
+    font-size: 4rem;
+    color: #32ff7e;
+    margin-bottom: 20px;
+}
+
+.success-message h2 {
+    color: #f0f0f0;
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    color: #a0a0a0;
+    margin-bottom: 25px;
+}
