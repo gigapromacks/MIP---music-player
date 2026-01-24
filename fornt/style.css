@@ -1,0 +1,606 @@
+body{
+    background-color: black/*rgb(15, 15, 15)*/;
+    overflow: hidden; /* Отключаем прокрутку всей страницы */
+    margin: 0; /* Добавьте это */
+    height: 100vh; /* Добавьте это */
+    cursor: crosshair ;
+}
+.sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    z-index: 999;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+#poisk{
+    margin-left: 200px;
+width: 79%;
+color:white;
+height: 50px;
+
+}
+input{
+    border: none;
+}
+/* Центр - прокручивается */
+.center {
+    flex: 1;
+    background: rgb(20, 20, 20);
+    height: 100vh;
+    overflow-y: auto; /* Только здесь прокрутка */
+    padding: 20px;
+}
+.sidebar {
+    width: 200px;
+    /*background: black;*/
+    height: 100%;
+   
+        flex-shrink: 0;
+ 
+color: black;
+}
+.container {
+    display: flex; /* Вот это главное! */
+    height: 100vh;
+}
+/* ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ ЗАГОЛОВКА */
+#zagalovok {
+    color: yellow;
+    text-shadow: 
+        0 0 5px yellow,
+        0 0 10px yellow,
+        0 0 15px yellow;
+
+    background-color: transparent; /* Полностью прозрачный фон */
+    border-radius: 5px;
+    display: inline-block; /* Чтобы тень применялась только к тексту */
+    margin: 10px;
+    letter-spacing: 1px; /* Разреженные буквы для лучшего эффекта */
+}
+.play{
+    margin-top: 20px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: aqua;
+margin-left: 80px;
+color: #1a1a1a;
+
+
+/* Добавь эти строки для центрирования текста */
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 20px;
+}
+
+
+/*          МОДАЛКА                           */
+/*                                        */
+/*                                         */
+/*                                            */
+/*                                    */
+#modal-cart {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    height: 900px;
+    width: 900px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+#warning-modal-cart{
+    padding-left: 17%;
+}
+#modal-cart .pr {
+    padding: 32px 40px 24px;
+   padding-left: 43%;
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+#modal-cart button {
+  
+    background: linear-gradient(90deg, #FFD700 0%, #FFC700 100%);
+    color: #1a1a1a;
+    border: none;
+    padding: 16px 32px;
+    
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 20px 40px;
+    letter-spacing: 0.5px;
+    margin-left: 38%;
+}
+
+#modal-cart button:hover {
+    background: linear-gradient(90deg, #FFE44D 0%, #FFD700 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+}
+
+#modal-cart a .pr {
+   /*КНОПКА СТАТЬ ИСПОЛНИТЕЛЕМ*/ display: none;
+    padding: 20px 40px;
+    font-size: 18px;
+    background: linear-gradient(90deg, #FFD700 0%, #FFC700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+#modal-cart a:hover .pr {
+    opacity: 0.8;
+}
+
+#krest {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    padding: 0;
+    z-index: 10;
+}
+
+#krest:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: scale(1.05);
+}
+/*          Музыка                              */
+/*                                        */
+/*                                         */
+/*                                            */
+/* Добавление кнопки "Добавить в избранное" */
+.muz-fav-btn {
+  position: absolute;
+   margin-right: 222px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 5px;
+right: -216px;
+
+   border-radius: 50%;
+}
+
+.muz-fav-btn:hover {
+    color: yellow;
+
+}
+
+.muz-fav-btn.active {
+    color: red;
+}
+
+
+
+.muz{
+background-color: rgb(73, 72, 72);
+border-radius: 15px;
+position: relative;
+}
+.title{
+    padding-left: 47%;
+}
+
+
+
+/* Базовые стили аудиоплеера */
+.muz-audio {
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+    outline: none;
+    filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
+    border-radius: 12px;
+}
+
+/* Панель управления аудио */
+.muz-audio::-webkit-media-controls-panel {
+    background: linear-gradient(135deg, rgba(40, 40, 40, 0.9), rgba(30, 30, 30, 0.95));
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 0, 0.2);
+    padding: 8px;
+}
+
+/* Кнопка воспроизведения */
+.muz-audio::-webkit-media-controls-play-button {
+    background-color: yellow;
+    border-radius: 50%;
+    border: none;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+}
+
+.muz-audio::-webkit-media-controls-play-button:hover {
+    background-color: #ffd700;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+}
+
+/* Ползунки */
+.muz-audio::-webkit-media-controls-timeline {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+    margin: 0 10px;
+}
+
+.muz-audio::-webkit-media-controls-current-time-display,
+.muz-audio::-webkit-media-controls-time-remaining-display {
+    color: white;
+    font-size: 12px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    margin: 0 5px;
+}
+
+/* Ползунок громкости */
+.muz-audio::-webkit-media-controls-volume-slider-container,
+.muz-audio::-webkit-media-controls-volume-slider {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+}
+
+.muz-audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background: yellow;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Кнопка громкости */
+.muz-audio::-webkit-media-controls-mute-button {
+    background-color: transparent;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.muz-audio::-webkit-media-controls-mute-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ползунок прогресса */
+.muz-audio::-webkit-slider-thumb {
+    background: yellow;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+
+/* Для Firefox */
+.muz-audio::-moz-range-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 4px;
+}
+
+.muz-audio::-moz-range-thumb {
+    background: yellow;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .muz-audio {
+        height: 45px;
+    }
+    
+    .muz-audio::-webkit-media-controls-panel {
+        padding: 5px;
+    }
+}
+
+/*                       Конец  Музыки               */
+/*                                                   */
+/*                                                   */
+/*                                                   */
+
+.folow{
+   padding-top: 6px;
+   padding-left: 17%; 
+ margin-top: 20px;
+
+ color:white;
+   background: rgb(156, 42, 42);
+height: 30px;
+   width: 100px;
+border-top-right-radius: 15px;
+border-bottom-right-radius: 15px;
+}
+.folow:hover{
+margin-left:5px ;
+
+}
+.activeF{
+    margin-left:5px ;
+    background-color: rgb(165, 11, 11);
+    }
+
+
+
+
+#er{
+    display: none;
+    margin-top:100px;
+    margin-left:430px;
+color: white;
+}
+
+#er-poisk{
+    display: none;
+    margin-top:100px;
+    margin-left:430px;
+color: white;
+}
+
+#er-ple{
+    display: none;
+    margin-top:100px;
+    margin-left:430px;
+color: white;
+}
+
+/*           */
+/*          */
+/*    РЕГИСТРАЦИЯ      */
+/*          */
+/*          */
+#registr {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999990;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    height: 550px;
+    width: 420px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 40px;
+    box-sizing: border-box;
+   
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#registr h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+#registr input {
+    width: 100%;
+    padding: 16px 20px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
+
+#registr input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.1);
+}
+
+#registr input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Кнопка "Подтвердить" */
+#registr button {
+    background: linear-gradient(90deg, #FFD700 0%, #FFC700 100%);
+    color: #1a1a1a;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+#registr button:hover {
+    background: linear-gradient(90deg, #FFE44D 0%, #FFD700 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Параграф с текстом */
+#registr p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Кнопка "закрыть" - специфический стиль */
+#registr button[onclick="zakrRegistr()"] {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+#registr button[onclick="zakrRegistr()"]:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Стиль для окна регистрации */
+#regi {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999991;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    height: 500px;
+    width: 420px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#regi h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+#regi input {
+    width: 100%;
+    padding: 16px 20px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 15px;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
+
+#regi input:focus {
+    outline: none;
+    border-color: rgba(255, 255, 0, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 2px rgba(255, 255, 0, 0.1);
+}
+
+#regi input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Кнопка "Создать" */
+#regi button {
+    background: linear-gradient(90deg, #FFD700 0%, #FFC700 100%);
+    color: #1a1a1a;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+#regi button:hover {
+    background: linear-gradient(90deg, #FFE44D 0%, #FFD700 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+}
+
+/* Кнопка "закрыть" */
+#regi button[onclick="zakrRegi()"] {
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+#regi button[onclick="zakrRegi()"]:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Добавить в конец файла style.css после всех остальных стилей */
